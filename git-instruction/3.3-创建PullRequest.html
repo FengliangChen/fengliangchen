@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="创建Pull Request BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。 原文以 Bitbucket 为例，考虑到git-recipes主要面向 GitHub 用户，因此栗子替换成了 GitHub。Pull Request 在 GitLab 等">
+<meta name="keywords" content="tech">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Good Day">
+<meta property="og:url" content="http://yoursite.com/git-instruction/3.3-创建PullRequest.html">
+<meta property="og:site_name" content="Good Day">
+<meta property="og:description" content="创建Pull Request BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。 原文以 Bitbucket 为例，考虑到git-recipes主要面向 GitHub 用户，因此栗子替换成了 GitHub。Pull Request 在 GitLab 等">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/7262715/12608331/8ece897e-c516-11e5-91c0-f7a44434478f.png">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:dc1a0821-efd6-4852-b7e6-c3a787656c61/02.svg">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:3a777a86-6106-4484-b75d-f2f19abc0e7f/03.svg">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:8c784aa1-3393-49b7-b4c5-2b91bf3aa48a/04.svg">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:50c76de3-6c5b-4adf-9a96-a611cc3dbebc/05.svg">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:a5c54fd9-09d7-4f59-90c1-8b228fec80a5/06.svg">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:2510a321-ba5f-4c31-82ec-f3ad062c8e6d/07.svg">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:0907a594-5786-47fb-87b4-05fc08e0c8dc/08.svg">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:8b3d2111-5a88-4802-967c-71f51c248b03/09.svg">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/7262715/12614812/232fb7f2-c53d-11e5-80cb-68d2af29d6e9.png">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:4f051d96-8ce7-4aab-af74-b2de38c41443/11.svg">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:f0979362-cf67-413d-bac1-8275e20aea58/12.svg">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:d3a07e01-ad5c-4e11-929a-87c049a27a6b/13.svg">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:36f8c233-ef70-41ce-8b91-4f21dd735817/14.svg">
+<meta property="og:image" content="https://user-images.githubusercontent.com/8186898/36071353-e3aa9852-0f47-11e8-911d-dddd35de2694.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/7262715/12615618/b1373fd0-c541-11e5-9b91-47d40f8083ba.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/7262715/12615732/67c8c872-c542-11e5-9734-71751b83f63c.png">
+<meta property="og:updated_time" content="2018-09-03T18:17:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Good Day">
+<meta name="twitter:description" content="创建Pull Request BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。 原文以 Bitbucket 为例，考虑到git-recipes主要面向 GitHub 用户，因此栗子替换成了 GitHub。Pull Request 在 GitLab 等">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/7262715/12608331/8ece897e-c516-11e5-91c0-f7a44434478f.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/git-instruction/3.3-创建PullRequest.html"/>
+
+
+
+
+
+  <title> | Good Day</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Good Day</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">To discover</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h1 id="创建Pull-Request"><a href="#创建Pull-Request" class="headerlink" title="创建Pull Request"></a>创建Pull Request</h1><blockquote>
+<p>BY 童仲毅（<a href="https://github.com/geeeeeeeeek/git-recipes/" target="_blank" rel="noopener">geeeeeeeeek@github</a>）</p>
+<p>这是一篇在<a href="https://www.atlassian.com/git/tutorials/making-a-pull-request" target="_blank" rel="noopener">原文（BY atlassian）</a>基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（<a href="http://creativecommons.org/licenses/by/2.5/au/deed.zh" target="_blank" rel="noopener">CC BY 2.5 AU</a>）协议共享。</p>
+<p>原文以 Bitbucket 为例，考虑到<a href="https://github.com/geeeeeeeeek/git-recipes/" target="_blank" rel="noopener">git-recipes</a>主要面向 GitHub 用户，因此栗子替换成了 GitHub。Pull Request 在 GitLab 等平台上也有，用法和本教程基本一致。</p>
+</blockquote>
+<p>Pull Request 是开发者使用 GitHub 进行协作的利器。这个功能为用户提供了友好的页面，让提议的更改在并入官方项目之前，可以得到充分的讨论。</p>
+<p><img src="https://cloud.githubusercontent.com/assets/7262715/12608331/8ece897e-c516-11e5-91c0-f7a44434478f.png" alt="qq20160127-0"></p>
+<p>最简单地来说，Pull Request 是一种机制，让开发者告诉项目成员一个功能已经完成。一旦 feature 分支开发完毕，开发者使用 GitHub 账号提交一个 Pull Request。它告诉所有参与者，他们需要审查代码，并将代码并入 <code>master</code> 分支。</p>
+<p>但是，Pull Request 不只是一个通知，还是一个专注于某个提议功能的讨论版。 如果更改导致了任何问题，团队成员可以在 Pull Request 下发布反馈，甚至推送后续提交来修改这个 Pull Request。所有的活动都在这个 Pull Request里之间追踪。</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:dc1a0821-efd6-4852-b7e6-c3a787656c61/02.svg" alt="Git Workflows: Activity inside a Pull Request"></p>
+<p>和其他协作模型相比，这种共享提交的解决方案形成了更加线性的工作流。SVN 和 Git 都能通过一个简单的脚本发送通知邮件；但是，如果要讨论更改，开发者不得不在邮件里回复。这会变得愈发杂乱无章，尤其是后续提交出现时。Pull Request 将所有这些功能放入了一个友好的网页，在每个 GitHub 仓库上方都能找到。</p>
+<h3 id="剖析一个-Pull-Request"><a href="#剖析一个-Pull-Request" class="headerlink" title="剖析一个 Pull Request"></a>剖析一个 Pull Request</h3><p>当你提交一个 Pull Request 的时候，你做的事情是 <em>请求（request）</em> 另一个开发者（比如项目维护者）来 <em>拉取（pull）</em> 你仓库中的一个分支到他们的仓库。也就是说你需要提供 4 个信息来完成一个 Pull Request：源仓库、源分支、目标仓库、目标分支。</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:3a777a86-6106-4484-b75d-f2f19abc0e7f/03.svg" alt="Git Workflows: Pull Requests"></p>
+<p>GitHub 会机智地帮你将一些值设为默认值。但是，取决于你的协作工作流，你的团队可能需要设置不同的值。上图显示了一个请求从 feature 分支合并到官方  master分支的一个 Pull Request，但除此之外还有好多种使用 Pull Request 的方式。</p>
+<h2 id="Pull-Request是如何工作的"><a href="#Pull-Request是如何工作的" class="headerlink" title="Pull Request是如何工作的"></a>Pull Request是如何工作的</h2><p>Pull Request 可以和 feature 分支工作流、GitFlow 工作流或者 Fork 工作流一起使用。但 Pull Request 需要两个不同的分支或是两个不同的仓库，因此它们不能和中心化的工作流一起使用。在不同的工作流中使用 Pull Request 有些不同，但大致的流程如下：</p>
+<ol>
+<li>开发者在他们的本地仓库中为某个功能创建一个专门的分支。</li>
+<li>开发者将分支推送到公共的 GitHub 仓库。</li>
+<li>开发者用 GitHub 发起一个 Pull Request。</li>
+<li>其余的团队成员审查代码，讨论并且做出修改。</li>
+<li>项目维护者将这个功能并入官方的仓库，然后关闭这个 Pull Request。</li>
+</ol>
+<p>下面的章节讨论 Pull Request 在不同的协作工作流中有哪些不同。</p>
+<h3 id="Feature-分支工作流中的-Pull-Request"><a href="#Feature-分支工作流中的-Pull-Request" class="headerlink" title="Feature 分支工作流中的 Pull Request"></a>Feature 分支工作流中的 Pull Request</h3><p>Feature 分支工作流使用共享的 GitHub 仓库来管理协作，开发者在单独的 feature 分支中添加功能。开发者在将代码并入主代码库之前，应该发起一个 Pull Request 来启动这个功能的讨论，而不是直接将它们合并到 <code>master</code>。</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:8c784aa1-3393-49b7-b4c5-2b91bf3aa48a/04.svg" alt="Pull Request: Feature Branch workflow"></p>
+<p>在 Feature 分支工作流中只有一个公共的仓库，因此 Pull Request 的目标和源仓库永远是同一个。一般来说，开发者会将他们的  feature分支作为源分支，<code>master</code> 作为目标分支。</p>
+<p>在收到 Pull Request 之后，项目维护者将会做出决定。如果这个功能可以立即发布，他们只需要将代码合并进 <code>master</code>，然后关闭 Pull Request 即可。但是，如果提议的更改有一些问题，他们可以在 Pull Request 下发布反馈。后续提交将会显示在相关评论的下方。</p>
+<p>你也可以发布一个未完成功能的 Pull Request。例如，如果开发者在实现一个特殊的需求时遇到了问题，同样可以发布一个包含工作进展的 Pull Request。其他开发者可以在这个 Pull Request 后面提供建议，甚至自己发布后续的提交来解决这个问题。</p>
+<h3 id="GitFlow-工作流中的-Pull-Request"><a href="#GitFlow-工作流中的-Pull-Request" class="headerlink" title="GitFlow 工作流中的 Pull Request"></a>GitFlow 工作流中的 Pull Request</h3><p>GitFlow 工作流和 Feature 分支工作流类似，但定义了围绕项目发布的一个严格的分支模型。在 GitFlow 工作流之上添加 Pull Request 使得开发者方便地讨论发布分支或是所在的维护分支。</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:50c76de3-6c5b-4adf-9a96-a611cc3dbebc/05.svg" alt="Pull Requests: Gitflow Workflow"></p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:a5c54fd9-09d7-4f59-90c1-8b228fec80a5/06.svg" alt="Pull Requests: Gitflow Workflow 2"></p>
+<p>在 GitFlow 工作流中的 Pull Request 和上一节中的完全一致：开发者只需在功能、发布或是快速修复分支需要审查时发布一个 Pull Request，GitHub 会通知到其余的团队成员。</p>
+<p>功能一般都会合并到 <code>develop</code> 分支，而发布和快速修复分支会被同时合并到 <code>develop</code> 和 <code>master</code> 当中。 Pull Request 可以用来妥善管理这些合并。</p>
+<h3 id="Fork-工作流中的-Pull-Request"><a href="#Fork-工作流中的-Pull-Request" class="headerlink" title="Fork 工作流中的 Pull Request"></a>Fork 工作流中的 Pull Request</h3><p>在 Fork 工作流中，开发者将一个完成的功能推送到 <em>他们自己的</em> 仓库，而不是公共的仓库。在这之后，他们发布一个 Pull Request，告诉项目维护者代码需要审查了。</p>
+<p>在这个工作流中，Pull Request 的通知作用显得非常有用，因为项目维护者无法获知其他开发者什么时候向他们自己的 GitHub 仓库中添加了提交。</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:2510a321-ba5f-4c31-82ec-f3ad062c8e6d/07.svg" alt="Pull Requests: Forking workflow"></p>
+<p>因为每个开发者都有他们自己的公共仓库，Pull Request 的源仓库和目标仓库不是同一个。源仓库是开发者的公开仓库，源分支是包含提议更改的那一个。如果开发者想要将功能合并到主代码库，目标仓库便是官方的项目仓库，目标分支为 <code>master</code>。</p>
+<p>Pull Request 还可以用来和官方项目之外的开发者进行协作。比如说，一个开发者正在和同事一起开发一个功能，他们可以向 <em>同事的</em> GitHub 仓库发起一个 Pull Request，而不是官方仓库。他们将 feature 分支同时作为源分支和目标分支。</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:0907a594-5786-47fb-87b4-05fc08e0c8dc/08.svg" alt="Pull Requests: Forking workflow"></p>
+<p>两个开发者可以在 Pull Request 中讨论和开发分支。当功能完成时，其中一位可以发起另一个 Pull Request，请求将功能合并到官方的 master 分支中去。这种灵活性使得 Pull Request 成为了 Fork 工作流中尤为强大的协作工具。</p>
+<h2 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h2><p>下面的🌰演示了如何将 Pull Request 用在 Fork 工作流中。小团队中的开发和向一个开源项目贡献代码都可以这样做。</p>
+<p>在这个栗子中，Mary 是一位开发者，John 是项目的维护者。他们都有自己公开的 GitHub 仓库，John 的仓库之一便是下面的官方项目。</p>
+<h3 id="Mary-fork了官方项目"><a href="#Mary-fork了官方项目" class="headerlink" title="Mary fork了官方项目"></a>Mary fork了官方项目</h3><p><img src="https://wac-cdn.atlassian.com/dam/jcr:8b3d2111-5a88-4802-967c-71f51c248b03/09.svg" alt="Pull Requests: Fork the project"></p>
+<p>为了参与这个项目，Mary 首先要做的是 fork 属于 John 的 GitHub 仓库。她需要注册登录 GitHub，找到 John 的仓库，点击 Fork 按钮。</p>
+<blockquote>
+<p>下图显示的是 geeeeeeeeek 的 WeChatLuckyMoney 仓库。</p>
+</blockquote>
+<p><img src="https://cloud.githubusercontent.com/assets/7262715/12614812/232fb7f2-c53d-11e5-80cb-68d2af29d6e9.png" alt="qq20160127-1"></p>
+<p>选好 fork 的目标位置之后，她在服务端就有了一个项目的副本。</p>
+<h3 id="Mary-克隆了她的-GitHub-仓库"><a href="#Mary-克隆了她的-GitHub-仓库" class="headerlink" title="Mary 克隆了她的 GitHub 仓库"></a>Mary 克隆了她的 GitHub 仓库</h3><p><img src="https://wac-cdn.atlassian.com/dam/jcr:4f051d96-8ce7-4aab-af74-b2de38c41443/11.svg" alt="Pull Request: Clone the Bitbucket repo"></p>
+<p>接下来，Mary 需要将她刚刚 fork 的 GitHub 仓库克隆下来。她在本地会有一份项目的副本。她需要运行下面这个命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/user/repo.git</span><br></pre></td></tr></table></figure>
+<p>请记住，<code>git clone</code> 自动创建了一个名为 <code>origin</code> 的远端连接，指向 Mary 所 fork 的仓库。</p>
+<h3 id="Mary-开发了一个新功能"><a href="#Mary-开发了一个新功能" class="headerlink" title="Mary 开发了一个新功能"></a>Mary 开发了一个新功能</h3><p><img src="https://wac-cdn.atlassian.com/dam/jcr:f0979362-cf67-413d-bac1-8275e20aea58/12.svg" alt="Pull Requests: develop a new feature"></p>
+<p>在她写任何代码之前，Mary 需要为这个功能创建一个新的分支。这个分支将是她随后发起 Pull Request 时要用到的源分支。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b some-feature</span><br><span class="line"># 编辑一些代码</span><br><span class="line">git commit -a -m &quot;新功能的一些草稿&quot;</span><br></pre></td></tr></table></figure>
+<p>为了完成这个新功能，Mary 想创建多少个提交都可以。如果 feature 分支的历史有些乱，她可以使用交互式的 rebase 来移除或者拼接不必要的提交。对于大项目来说，清理 feature 的项目历史使得项目维护者更容易看清楚 Pull Request 的所处的进展。</p>
+<h3 id="Mary-将-feature-分支推送到了她的-GitHub-仓库"><a href="#Mary-将-feature-分支推送到了她的-GitHub-仓库" class="headerlink" title="Mary 将 feature 分支推送到了她的 GitHub 仓库"></a>Mary 将 feature 分支推送到了她的 GitHub 仓库</h3><p><img src="https://wac-cdn.atlassian.com/dam/jcr:d3a07e01-ad5c-4e11-929a-87c049a27a6b/13.svg" alt="Pull Requests: Push feature to Bitbucket repository"></p>
+<p>在功能完成后，Mary 使用简单的 <code>git push</code> 将 feature 分支推送到了她自己的 GitHub 仓库上（不是官方的仓库）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin some-branch</span><br></pre></td></tr></table></figure>
+<p>这样她的更改就可以被项目维护者看到了（或者任何有权限的协作者）。</p>
+<h3 id="Mary-创建了一个-Pull-Request"><a href="#Mary-创建了一个-Pull-Request" class="headerlink" title="Mary 创建了一个 Pull Request"></a>Mary 创建了一个 Pull Request</h3><p><img src="https://wac-cdn.atlassian.com/dam/jcr:36f8c233-ef70-41ce-8b91-4f21dd735817/14.svg" alt="Pull Request: Create Pull Request"></p>
+<p>GitHub 上已经有了她的 feature 分支之后，Mary 可以找到被她 fork 的仓库，点击项目简介下的 <em>New Pull Request</em> 按钮，用她的 GitHub 账号创建一个 Pull Request。Mary 的仓库会被默认设置为源仓库（head fork），询问她指定源分支（compare）、目标仓库（base fork）和目标分支（base）。</p>
+<p>Mary 想要将她的功能并入主代码库，所以源分支就是她的 feature 分支，目标仓库就是 John 的公开仓库，目标分支为 <code>master</code>。她还需要提供一个 Pull Request 的标题和简介。</p>
+<blockquote>
+<p>下图展示的是将 LitoMore/demo-project（源仓库）的 develop（源分支）合并到 LitoMore/demo-project（目标仓库）的 master（目标分支）。</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/8186898/36071353-e3aa9852-0f47-11e8-911d-dddd35de2694.png" alt="qq20160127-2"></p>
+<p>在她创建了 Pull Request 之后，GitHub 会给 John 发送一条通知。</p>
+<h3 id="John-审查了这个-Pull-Request"><a href="#John-审查了这个-Pull-Request" class="headerlink" title="John 审查了这个 Pull Request"></a>John 审查了这个 Pull Request</h3><p><img src="https://cloud.githubusercontent.com/assets/7262715/12615618/b1373fd0-c541-11e5-9b91-47d40f8083ba.png" alt="qq20160127-3"></p>
+<p>John 可以在他自己的 GitHub 仓库下的 <em>Pull Request</em> 选项卡中看到所有的 Pull Request。点击 Mary 的 Pull Request 会显示这个 Pull Request 的简介、feature 分支的提交历史，以及包含的更改。</p>
+<p>如果他认为 feature 分支已经可以合并了，他只需点击 <em>Merge Pull Request</em> 按钮来通过这个 Pull Request，将 Mary 的  feature分支并入他的 <code>master</code> 分支。</p>
+<p>但是，在这里栗子中，假设 John 发现了 Mary 代码中的一个小 bug，需要她在合并前修复。他可以评论整个 Pull Request，也可以评论 feature 分支中某个特定的提交。</p>
+<p><img src="https://cloud.githubusercontent.com/assets/7262715/12615732/67c8c872-c542-11e5-9734-71751b83f63c.png" alt="qq20160127-4"></p>
+<h3 id="Mary-添加了一个后续提交"><a href="#Mary-添加了一个后续提交" class="headerlink" title="Mary 添加了一个后续提交"></a>Mary 添加了一个后续提交</h3><p>如果 Mary 对这个反馈感到困惑，她可以在 Pull Request 后回复，把这里当做是她的功能的讨论版。</p>
+<p>为了修复错误，Mary 在她的 feature 分支后面添加了另一个提交，并将它推送到了她的 GitHub 仓库，就像她之前做的一样。这个提交被自动添加到原来的 Pull Request 后面，John 可以在他的评论下方再次审查这些修改。</p>
+<h3 id="John-接受了-Pull-Request"><a href="#John-接受了-Pull-Request" class="headerlink" title="John 接受了 Pull Request"></a>John 接受了 Pull Request</h3><p>最后，John 接受了这些修改，将 feature 分支并入了 master 分支，关闭了这个 Pull Request。功能现在已经整合到了项目中，其他在 master 分支上工作的开发者可以使用标准的 <code>git pull</code> 命令将这些修改拉取到自己的本地仓库。</p>
+<blockquote>
+<p>如果你希望实践一下，可以按照上面的流程向这个项目发起一个 Pull Request，修改任何你发现的错误 :smile:</p>
+</blockquote>
+<h2 id="接下来怎么做？"><a href="#接下来怎么做？" class="headerlink" title="接下来怎么做？"></a>接下来怎么做？</h2><p>你现在应该已经掌握了如何将你的 Pull Request 整合到你的工作流。记住，Pull Request 不是替代任何 Git 工作流的万金油，而是一种让队员间协作锦上添花的工具。</p>
+<blockquote>
+<p>这篇文章是<a href="https://github.com/geeeeeeeeek/git-recipes/" target="_blank" rel="noopener"><strong>「git-recipes」</strong></a>的一部分，点击 <a href="https://github.com/geeeeeeeeek/git-recipes/wiki/" target="_blank" rel="noopener"><strong>目录</strong></a> 查看所有章节。</p>
+<p>如果你觉得文章对你有帮助，欢迎点击右上角的 <strong>Star</strong> :star2: 或 <strong>Fork</strong> :fork_and_knife:。</p>
+<p>如果你发现了错误，或是想要加入协作，请参阅 <a href="https://github.com/geeeeeeeeek/git-recipes/issues/1" target="_blank" rel="noopener">Wiki 协作说明</a>。</p>
+</blockquote>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">S.M.</p>
+              <p class="site-description motion-element" itemprop="description">The records of my path.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建Pull-Request"><span class="nav-number">1.</span> <span class="nav-text">创建Pull Request</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#剖析一个-Pull-Request"><span class="nav-number">1.0.1.</span> <span class="nav-text">剖析一个 Pull Request</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pull-Request是如何工作的"><span class="nav-number">1.1.</span> <span class="nav-text">Pull Request是如何工作的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Feature-分支工作流中的-Pull-Request"><span class="nav-number">1.1.1.</span> <span class="nav-text">Feature 分支工作流中的 Pull Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitFlow-工作流中的-Pull-Request"><span class="nav-number">1.1.2.</span> <span class="nav-text">GitFlow 工作流中的 Pull Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fork-工作流中的-Pull-Request"><span class="nav-number">1.1.3.</span> <span class="nav-text">Fork 工作流中的 Pull Request</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栗子"><span class="nav-number">1.2.</span> <span class="nav-text">栗子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mary-fork了官方项目"><span class="nav-number">1.2.1.</span> <span class="nav-text">Mary fork了官方项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mary-克隆了她的-GitHub-仓库"><span class="nav-number">1.2.2.</span> <span class="nav-text">Mary 克隆了她的 GitHub 仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mary-开发了一个新功能"><span class="nav-number">1.2.3.</span> <span class="nav-text">Mary 开发了一个新功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mary-将-feature-分支推送到了她的-GitHub-仓库"><span class="nav-number">1.2.4.</span> <span class="nav-text">Mary 将 feature 分支推送到了她的 GitHub 仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mary-创建了一个-Pull-Request"><span class="nav-number">1.2.5.</span> <span class="nav-text">Mary 创建了一个 Pull Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#John-审查了这个-Pull-Request"><span class="nav-number">1.2.6.</span> <span class="nav-text">John 审查了这个 Pull Request</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mary-添加了一个后续提交"><span class="nav-number">1.2.7.</span> <span class="nav-text">Mary 添加了一个后续提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#John-接受了-Pull-Request"><span class="nav-number">1.2.8.</span> <span class="nav-text">John 接受了 Pull Request</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接下来怎么做？"><span class="nav-number">1.3.</span> <span class="nav-text">接下来怎么做？</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">S.M.</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

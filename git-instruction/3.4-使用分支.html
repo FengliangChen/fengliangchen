@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="使用分支 BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。  这份教程是 Git 分支的综合介绍。首先，我们简单讲解如何创建分支，就像请求一份新的项目历史一样。然后，我们会看到 git checkout 是如何切换分支的。最后，学习一下 git me">
+<meta name="keywords" content="tech">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Good Day">
+<meta property="og:url" content="http://yoursite.com/git-instruction/3.4-使用分支.html">
+<meta property="og:site_name" content="Good Day">
+<meta property="og:description" content="使用分支 BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。  这份教程是 Git 分支的综合介绍。首先，我们简单讲解如何创建分支，就像请求一份新的项目历史一样。然后，我们会看到 git checkout 是如何切换分支的。最后，学习一下 git me">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:746be214-eb99-462c-9319-04a4d2eeebfa/01.svg">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:80aa77d2-c28f-415e-ab10-e3612456a9c1/02.svg">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:b0e2f237-9337-4385-be22-43f623e133d0/03.svg">
+<meta property="og:image" content="https://www.atlassian.com/git/images/tutorials/collaborating/using-branches/04.svg">
+<meta property="og:image" content="https://www.atlassian.com/git/images/tutorials/collaborating/using-branches/05.svg">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:8c2753f6-5942-4ce1-8660-79a1100535ee/05%20(4">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:b87df050-2a3a-4f17-bb80-43c5217b4947/07%20(1">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:91b1bdf5-fda3-4d20-b108-0bb9eea402b2/08.svg">
+<meta property="og:updated_time" content="2018-09-03T18:17:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Good Day">
+<meta name="twitter:description" content="使用分支 BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。  这份教程是 Git 分支的综合介绍。首先，我们简单讲解如何创建分支，就像请求一份新的项目历史一样。然后，我们会看到 git checkout 是如何切换分支的。最后，学习一下 git me">
+<meta name="twitter:image" content="https://wac-cdn.atlassian.com/dam/jcr:746be214-eb99-462c-9319-04a4d2eeebfa/01.svg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/git-instruction/3.4-使用分支.html"/>
+
+
+
+
+
+  <title> | Good Day</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Good Day</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">To discover</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h1 id="使用分支"><a href="#使用分支" class="headerlink" title="使用分支"></a>使用分支</h1><blockquote>
+<p>BY 童仲毅（<a href="https://github.com/geeeeeeeeek/git-recipes/" target="_blank" rel="noopener">geeeeeeeeek@github</a>）</p>
+<p>这是一篇在<a href="https://www.atlassian.com/git/tutorials/using-branches" target="_blank" rel="noopener">原文（BY atlassian）</a>基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（<a href="http://creativecommons.org/licenses/by/2.5/au/deed.zh" target="_blank" rel="noopener">CC BY 2.5 AU</a>）协议共享。</p>
+</blockquote>
+<p>这份教程是 Git 分支的综合介绍。首先，我们简单讲解如何创建分支，就像请求一份新的项目历史一样。然后，我们会看到 git checkout 是如何切换分支的。最后，学习一下 git merge 是如何整合独立分支的历史。</p>
+<p>我们已经知道，Git 分支和 SVN 分支不同。SVN 分支只被用来记录偶尔大规模的开发效果，而 Git 分支是你日常工作流中不可缺失的一部分。</p>
+<h2 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h2><p>分支代表了一条独立的开发流水线。分支是我们在第二篇中讨论过的「编辑/缓存/提交」流程的抽象。你可以把它看作请求全新「工作目录、缓存区、项目历史」的一种方式。新的提交被存放在当前分支的历史中，导致了项目历史被 fork 了一份。</p>
+<p><code>git branch</code> 命令允许你创建、列出、重命名和删除分支。它不允许你切换分支或是将被 fork 的历史放回去。因此，<code>git branch</code> 和 <code>git checkout</code>、<code>git merge</code> 这两个命令通常紧密地结合在一起使用。</p>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<p>列出仓库中所有分支。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>创建一个名为 <code>&lt;branch&gt;</code> 的分支。<em>不会</em> 自动切换到那个分支去。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>删除指定分支。这是一个安全的操作，Git 会阻止你删除包含未合并更改的分支。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>强制删除指定分支，即使包含未合并更改。如果你希望永远删除某条开发线的所有提交，你应该用这个命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -m &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>将当前分支命名为 <code>&lt;branch&gt;</code>。</p>
+<h3 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h3><p>在 Git 中，分支是你日常开发流程中的一部分。当你想要添加一个新的功能或是修复一个 bug 时——不管 bug 是大是小——你都应该新建一个分支来封装你的修改。这确保了不稳定的代码永远不会被提交到主代码库中，它同时给了你机会，在并入主分支前清理你 feature 分支的历史。</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:746be214-eb99-462c-9319-04a4d2eeebfa/01.svg" alt="Git Tutorial: git branch"></p>
+<p>比如，上图将一个拥有两条独立开发线的仓库可视化，其中一条是一个不起眼的功能，另一条是长期运行的功能。使用分支开发时，不仅可以同时在两条线上工作，还可以保持主要的 <code>master branch</code> 不混入奇怪的代码。</p>
+<h4 id="分支的顶端"><a href="#分支的顶端" class="headerlink" title="分支的顶端"></a>分支的顶端</h4><p>Git 分支背后的实现远比 SVN 的模型要轻量。与其在目录之间复制文件，Git 将分支存为指向提交的引用。换句话说，分支代表了一系列提交的 <em>顶端</em> ——而不是提交的 <em>容器</em> 。分支历史通过提交之间的关系来推断。</p>
+<p>这使得 Git 的合并模型变成了动态的。SVN 中的合并是基于文件的，而Git 让你在更抽象的提交层面操作。事实上，你可以看到项目历史中的合并其实是将两个独立的提交历史连接起来。</p>
+<h3 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h3><h4 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h4><p>分支只是指向提交的 <em>指针</em> ，理解这一点很重要。当你创建一个分支是，Git 只需要创建一个新的指针——仓库不会受到任何影响。因此，如果你最开始有这样一个仓库：</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:80aa77d2-c28f-415e-ab10-e3612456a9c1/02.svg" alt="Git Tutorial: repository without any branches"></p>
+<p>接下来你用下面的命令创建了一个分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch crazy-experiment</span><br></pre></td></tr></table></figure>
+<p>仓库历史保持不变。你得到的是一个指向当前提交的新的指针：</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:b0e2f237-9337-4385-be22-43f623e133d0/03.svg" alt="Git Tutorial: Create new branch"></p>
+<p>注意，这只会 <em>创建</em> 一个新的分支。要开始在上面添加提交，你需要用 <code>git checkout</code> 来选中这个分支，然后使用标准的 <code>git add</code> 和 <code>git commit</code> 命令。</p>
+<h4 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h4><p>一旦你完成了分支上的工作，准备将它并入主代码库，你可以自由地删除这个分支，而不丢失项目历史：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d crazy-experiment</span><br></pre></td></tr></table></figure>
+<p>然后，如果分支还没有合并，下面的命令会产生一个错误信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">error: The branch &apos;crazy-experiment&apos; is not fully merged.</span><br><span class="line">If you are sure you want to delete it, run &apos;git branch -D crazy-experiment&apos;.</span><br></pre></td></tr></table></figure>
+<p>Git 保护你不会丢失这些提交的引用，或者说丢失访问整条开发线的入口。如果你 <em>真的</em> 想要删除这个分支（比如说这是一个失败的实验），你可以用大写的 <code>-D</code> 标记：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -D crazy-experiment</span><br></pre></td></tr></table></figure>
+<p>它会删除这个分支，无视它的状态和警告，因此需谨慎使用。</p>
+<h2 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout"></a>git checkout</h2><p><code>git checkout</code> 命令允许你切换用 <code>git branch</code> 创建的分支。查看一个分支会更新工作目录中的文件，以符合分支中的版本，它还告诉 Git 记录那个分支上的新提交。将它看作一个选中你正在进行的开发的一种方式。</p>
+<p>在上一篇中，我们看到了如何用 <code>git checkout</code> 来查看旧的提交。「查看分支」和「将工作目录更新到选中的版本/修改」很类似；但是，新的更改 <em>会</em> 保存在项目历史中——这不是一个只读的操作。</p>
+<h3 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;existing-branch&gt;</span><br></pre></td></tr></table></figure>
+<p>查看特定分支，分支应该已经通过 <code>git branch</code> 创建。这使得 <code>&lt;existing-branch&gt;</code> 成为当前的分支，并更新工作目录的版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b &lt;new-branch&gt;</span><br></pre></td></tr></table></figure>
+<p>创建并查看 <code>&lt;new-branch&gt;</code>，<code>-b</code> 选项是一个方便的标记，告诉Git在运行 <code>git checkout &lt;new-branch&gt;</code> 之前运行 <code>git branch &lt;new-branch&gt;</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b &lt;new-branch&gt; &lt;existing-branch&gt;</span><br></pre></td></tr></table></figure>
+<p>和上一条相同，但将 <code>&lt;existing-branch&gt;</code> 作为新分支的基，而不是当前分支。</p>
+<h3 id="讨论-1"><a href="#讨论-1" class="headerlink" title="讨论"></a>讨论</h3><p><code>git checkout</code> 和 <code>git branch</code> 是一对好基友。当你想要创建一个新功能时，你用 <code>git branch</code> 创建分支，然后用 <code>git checkout</code> 查看。你可以在一个仓库中用 <code>git checkout</code> 切换分支，同时开发几个功能。</p>
+<p><img src="https://www.atlassian.com/git/images/tutorials/collaborating/using-branches/04.svg" alt="Git Tutorial: Switch between multiple features in a single repo with git checkout."></p>
+<p>每个功能专门一个分支对于传统 SVN 工作流来说是一个巨大的转变。这使得尝试新的实验超乎想象的简单，不用担心毁坏已有的功能，并且可以同时开发几个不相关的功能。另外，分支可以促进了不同的协作工作流。</p>
+<h4 id="分离的-HEAD"><a href="#分离的-HEAD" class="headerlink" title="分离的 HEAD"></a>分离的 <code>HEAD</code></h4><p>现在我们已经看到了 <code>git checkout</code> 最主要的三种用法，我们可以讨论上一篇中提到的「分离 <code>HEAD</code>」状态了。</p>
+<p>记住，<code>HEAD</code> 是 Git 指向当前快照的引用。<code>git checkout</code> 命令内部只是更新 <code>HEAD</code>，指向特定分支或提交。当它指向分支时，Git 不会报错，但当你 check out 提交时，它会进入「分离 <code>HEAD</code>」状态。</p>
+<p><img src="https://www.atlassian.com/git/images/tutorials/collaborating/using-branches/05.svg" alt="Git Tutorial: Attached vs Detached Head"></p>
+<p>有个警告会告诉你所做的更改和项目的其余历史处于「分离」的状态。如果你在分离 <code>HEAD</code> 状态开始开发新功能，没有分支可以让你回到之前的状态。当你不可避免地 checkout 到了另一个分支（比如你的更改并入了这个分支），你将不再能够引用你的 feature 分支：</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:8c2753f6-5942-4ce1-8660-79a1100535ee/05%20(4" alt="Git Tutorial: Detached Head state">.svg)</p>
+<p>重点是，你应该永远在分支上开发——而绝不在分离的 <code>HEAD</code> 上。这样确保你一直可以引用到你的新提交。不过，如果你只是想查看旧的提交，那么是否处于分离 <code>HEAD</code> 状态并不重要。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>下面的例子演示了基本的 Git 分支流程。当你想要开发新功能时，你创建一个专门的分支，切换过去：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch new-feature</span><br><span class="line">git checkout new-feature</span><br></pre></td></tr></table></figure>
+<p>接下来，你可以和以往一样提交新的快照：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 编辑文件</span><br><span class="line">git add &lt;file&gt;</span><br><span class="line">git commit -m &quot;Started work on a new feature&quot;</span><br><span class="line"># 周而复始…</span><br></pre></td></tr></table></figure>
+<p>这些操作都被记录在 <code>new-feature</code> 上，和 <code>master</code> 完全独立。你想添加多少提交就可以添加多少，不用关心你其它分支的修改。当你想要回到「主」代码库时，只要 check out 到 <code>master</code> 分支即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
+<p>这个命令在你开始新的分支之前，告诉你仓库的状态。在这里，你可以选择并入完成的新功能，或者在你项目稳定的版本上继续工作。</p>
+<h2 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h2><p>合并是 Git 将被 fork 的历史放回到一起的方式。<code>git merge</code> 命令允许你将 <code>git branch</code> 创建的多条分支合并成一个。</p>
+<p>注意，下面所有命令将更改 <em>并入</em> 当前分支。当前分支会被更新，以响应合并操作，但目标分支完全不受影响。也就是说 <code>git merge</code> 经常和 <code>git checkout</code> 一起使用，选择当前分支，然后用 <code>git branch -d</code> 删除废弃的目标分支。</p>
+<h3 id="用法-2"><a href="#用法-2" class="headerlink" title="用法"></a>用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>将指定分支并入当前分支。Git 会决定使用哪种合并算法（下文讨论）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --no-ff &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>将指定分支并入当前分支，但 <em>总是</em> 生成一个合并提交（即使是快速向前合并）。这可以用来记录仓库中发生的所有合并。</p>
+<h3 id="讨论-2"><a href="#讨论-2" class="headerlink" title="讨论"></a>讨论</h3><p>一旦你在单独的分支上完成了功能的开发，重要的是将它放回主代码库。取决于你的仓库结构，Git 有几种不同的算法来完成合并：快速向前合并或者三路合并。</p>
+<p>当当前分支顶端到目标分支路径是线性之时，我们可以采取 <strong>快速向前合并</strong> 。Git 只需要将当前分支顶端（快速向前地）移动到目标分支顶端，即可整合两个分支的历史，而不需要“真正”合并分支。它在效果上合并了历史，因为目标分支上的提交现在在当前分支可以访问到。比如，<code>some-feature</code> 到 <code>master</code> 分支的快速向前合并会是这样的：</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:b87df050-2a3a-4f17-bb80-43c5217b4947/07%20(1" alt="Git Tutorial: Fast-forward merge">.svg)</p>
+<p>但是，如果分支已经分叉了，那么就无法进行快速向前合并。当和目标分支之间的路径不是线性之时，Git 只能执行 <strong>三路合并</strong> 。三路合并使用一个专门的提交来合并两个分支的历史。这个术语取自这样一个事实，Git 使用 <em>三个</em> 提交来生成合并提交：两个分支顶端和它们共同的祖先。</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:91b1bdf5-fda3-4d20-b108-0bb9eea402b2/08.svg" alt="Git Tutorial: Three way merge"></p>
+<p>但你可以选择使用哪一种合并策略时，很多开发者喜欢使用快速向前合并（搭配 rebase 使用）来合并微小的功能或者修复 bug，使用三路合并来整合长期运行的功能。后者导致的合并提交作为两个分支的连接标志。</p>
+<h4 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h4><p>如果你尝试合并的两个分支同一个文件的同一个部分，Git 将无法决定使用哪个版本。当这种情况发生时，它会停在合并提交，让你手动解决这些冲突。</p>
+<p>Git 的合并流程令人称赞的一点是，它使用我们熟悉的「编辑/缓存/提交」工作流来解决冲突。当你遇到合并冲突时，运行 <code>git status</code> 命令来查看哪些文件存在需要解决的冲突。比如，如果两个分支都修改了 <code>hello.py</code> 的同一处，你会看到下面的信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># On branch master</span><br><span class="line"># Unmerged paths:</span><br><span class="line"># (use &quot;git add/rm ...&quot; as appropriate to mark resolution)</span><br><span class="line">#</span><br><span class="line"># both modified: hello.py</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+<p>接下来，你可以自己修复这个合并。当你准备结束合并时，你只需对冲突的文件运行 <code>git add</code> 告诉 Git 冲突已解决。然后，运行 <code>git commit</code> 生成一个合并提交。这和提交一个普通的快照有着完全相同的流程，也就是说，开发者能够轻而易举地管理他们的合并。</p>
+<p>注意，提交冲突只会出现在三路合并中。在快速向前合并中，我们不可能出现冲突的更改。</p>
+<h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h3><h4 id="快速向前合并"><a href="#快速向前合并" class="headerlink" title="快速向前合并"></a>快速向前合并</h4><p>我们第一个例子演示了快速向前合并。下面的代码创建了一个分支，在后面添加了两个提交，然后使用快速向前合并将它并入主分支。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 开始新功能</span><br><span class="line">git checkout -b new-feature master</span><br><span class="line"></span><br><span class="line"># 编辑文件</span><br><span class="line">git add &lt;file&gt;</span><br><span class="line">git commit -m &quot;开始新功能&quot;</span><br><span class="line"></span><br><span class="line"># 编辑文件</span><br><span class="line">git add &lt;file&gt;</span><br><span class="line">git commit -m &quot;完成功能&quot;</span><br><span class="line"></span><br><span class="line"># 合并new-feature分支</span><br><span class="line">git checkout master</span><br><span class="line">git merge new-feature</span><br><span class="line">git branch -d new-feature</span><br></pre></td></tr></table></figure>
+<p>对于临时存在、用作独立开发环境而不是组织长期运行功能的工具的分支来说，这是一种常见的工作流。</p>
+<p>同时注意，运行 <code>git branch -d</code> 时 Git 不应该产生错误提示，因为 <code>new-feature</code> 现在可以在主分支上访问了。</p>
+<h4 id="三路合并"><a href="#三路合并" class="headerlink" title="三路合并"></a>三路合并</h4><p>下一个例子很相似，但需要进行三路合并，因为 <code>master</code> 在这个功能开发时取得了新进展。这是复杂功能和多个开发者同时工作时常见的情形。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 开始新功能</span><br><span class="line">git checkout -b new-feature master</span><br><span class="line"></span><br><span class="line"># 编辑文件</span><br><span class="line">git add &lt;file&gt;</span><br><span class="line">git commit -m &quot;开始新功能&quot;</span><br><span class="line"></span><br><span class="line"># 编辑文件</span><br><span class="line">git add &lt;file&gt;</span><br><span class="line">git commit -m &quot;完成功能&quot;</span><br><span class="line"></span><br><span class="line"># 在master分支上开发</span><br><span class="line">git checkout master</span><br><span class="line"></span><br><span class="line"># 编辑文件</span><br><span class="line">git add &lt;file&gt;</span><br><span class="line">git commit -m &quot;在master上添加了一些极其稳定的功能&quot;</span><br><span class="line"></span><br><span class="line"># 合并new-feature分支</span><br><span class="line">git merge new-feature</span><br><span class="line">git branch -d new-feature</span><br></pre></td></tr></table></figure>
+<p>注意，Git 现在无法进行快速向前合并，因为无法将 <code>master</code> 直接移动到 <code>new-feature</code>。</p>
+<p>对大多数工作流来说，<code>new-feature</code> 会是一个需要一段时间来开发的复杂功能，这也是为什么同时 <code>master</code> 会有新的提交出现。如果你的分支上的功能像上面的一样简单，你会更想将它 rebase 到 <code>master</code>，使用快速向前合并。它会通过整理项目历史来避免多余的合并提交。</p>
+<blockquote>
+<p>这篇文章是<a href="https://github.com/geeeeeeeeek/git-recipes/" target="_blank" rel="noopener"><strong>「git-recipes」</strong></a>的一部分，点击 <a href="https://github.com/geeeeeeeeek/git-recipes/wiki/" target="_blank" rel="noopener"><strong>目录</strong></a> 查看所有章节。</p>
+<p>如果你觉得文章对你有帮助，欢迎点击右上角的 <strong>Star</strong> :star2: 或 <strong>Fork</strong> :fork_and_knife:。</p>
+<p>如果你发现了错误，或是想要加入协作，请参阅 <a href="https://github.com/geeeeeeeeek/git-recipes/issues/1" target="_blank" rel="noopener">Wiki 协作说明</a>。</p>
+</blockquote>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">S.M.</p>
+              <p class="site-description motion-element" itemprop="description">The records of my path.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用分支"><span class="nav-number">1.</span> <span class="nav-text">使用分支</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-branch"><span class="nav-number">1.1.</span> <span class="nav-text">git branch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法"><span class="nav-number">1.1.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讨论"><span class="nav-number">1.1.2.</span> <span class="nav-text">讨论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分支的顶端"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">分支的顶端</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#栗子"><span class="nav-number">1.1.3.</span> <span class="nav-text">栗子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建分支"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">创建分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除分支"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">删除分支</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-checkout"><span class="nav-number">1.2.</span> <span class="nav-text">git checkout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讨论-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">讨论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分离的-HEAD"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">分离的 HEAD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">1.2.3.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-merge"><span class="nav-number">1.3.</span> <span class="nav-text">git merge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讨论-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">讨论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解决冲突"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">解决冲突</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#快速向前合并"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">快速向前合并</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三路合并"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">三路合并</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">S.M.</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

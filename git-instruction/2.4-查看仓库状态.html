@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="检查仓库状态 BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。  git statusgit status 命令显示工作目录和缓存区的状态。你可以看到哪些更改被缓存了，哪些还没有，以及哪些还未被 Git 追踪。status 的输出 不会 告诉你任何已">
+<meta name="keywords" content="tech">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Good Day">
+<meta property="og:url" content="http://yoursite.com/git-instruction/2.4-查看仓库状态.html">
+<meta property="og:site_name" content="Good Day">
+<meta property="og:description" content="检查仓库状态 BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。  git statusgit status 命令显示工作目录和缓存区的状态。你可以看到哪些更改被缓存了，哪些还没有，以及哪些还未被 Git 追踪。status 的输出 不会 告诉你任何已">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:52d530ce-7f51-48e3-920b-a18f776048d3/01.svg">
+<meta property="og:updated_time" content="2018-09-03T18:17:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Good Day">
+<meta name="twitter:description" content="检查仓库状态 BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。  git statusgit status 命令显示工作目录和缓存区的状态。你可以看到哪些更改被缓存了，哪些还没有，以及哪些还未被 Git 追踪。status 的输出 不会 告诉你任何已">
+<meta name="twitter:image" content="https://wac-cdn.atlassian.com/dam/jcr:52d530ce-7f51-48e3-920b-a18f776048d3/01.svg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/git-instruction/2.4-查看仓库状态.html"/>
+
+
+
+
+
+  <title> | Good Day</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Good Day</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">To discover</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h1 id="检查仓库状态"><a href="#检查仓库状态" class="headerlink" title="检查仓库状态"></a>检查仓库状态</h1><blockquote>
+<p>BY 童仲毅（<a href="https://github.com/geeeeeeeeek/git-recipes/" target="_blank" rel="noopener">geeeeeeeeek@github</a>）</p>
+<p>这是一篇在<a href="https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-log" target="_blank" rel="noopener">原文（BY atlassian）</a>基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（<a href="http://creativecommons.org/licenses/by/2.5/au/deed.zh" target="_blank" rel="noopener">CC BY 2.5 AU</a>）协议共享。</p>
+</blockquote>
+<h2 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h2><p><code>git status</code> 命令显示工作目录和缓存区的状态。你可以看到哪些更改被缓存了，哪些还没有，以及哪些还未被 Git 追踪。status 的输出 <em>不会</em> 告诉你任何已提交到项目历史的信息。如果你想看的话，应该使用 <code>git log</code> 命令。</p>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+<p>列出已缓存、未缓存、未追踪的文件。</p>
+<h3 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h3><p><code>git status</code> 是一个相对简单的命令。 它告诉你 <code>git add</code> 和 <code>git commit</code> 的进展。status 信息还包括了添加缓存和移除缓存的相关指令。样例输出显示了三类主要的 <code>git status</code> 输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># On branch master</span><br><span class="line"># Changes to be committed:</span><br><span class="line"># (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line">#</span><br><span class="line">#modified: hello.py</span><br><span class="line">#</span><br><span class="line"># Changes not staged for commit:</span><br><span class="line"># (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line"># (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line">#</span><br><span class="line">#modified: main.py</span><br><span class="line">#</span><br><span class="line"># Untracked files:</span><br><span class="line"># (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line">#</span><br><span class="line">#hello.pyc</span><br></pre></td></tr></table></figure>
+<h4 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h4><p>未追踪的文件通常有两类。它们要么是项目新增但还未提交的文件，要么是像 <code>.pyc</code>、<code>.obj</code>、<code>.exe</code> 等编译后的二进制文件。显然前者应该出现在 <code>git status</code> 的输出中，而后者会让我们困惑究竟发生了什么。</p>
+<p>因此，Git 允许你完全忽略这些文件，只需要将路径放在一个特定的 <code>.gitignore</code> 文件中。所有想要忽略的文件应该分别写在单独一行，<code>*</code> 字符用作通配符。比如，将下面这行加入项目根目录的<code>.gitignore</code>文件可以避免编译后的Python模块出现在<code>git status</code>中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*.pyc</span><br></pre></td></tr></table></figure>
+<h3 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h3><p>在提交更改前检查仓库状态是一个良好的实践，这样你就不会不小心提交什么奇怪的东西。这个例子显示了缓存和提交快照前后的仓库状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Edit hello.py</span><br><span class="line">git status</span><br><span class="line"># hello.py is listed under &quot;Changes not staged for commit&quot;</span><br><span class="line">git add hello.py</span><br><span class="line">git status</span><br><span class="line"># hello.py is listed under &quot;Changes to be committed&quot;</span><br><span class="line">git commit</span><br><span class="line">git status</span><br><span class="line"># nothing to commit (working directory clean)</span><br></pre></td></tr></table></figure>
+<p>第一个 status 的输出显示文件还未缓存。<code>git add</code> 操作会影响第二个 <code>git status</code>，最后的 status 输出告诉你已经没有可以提交的东西了——工作目录和最近的提交一致。一些 Git 命令（比如 <code>git merge</code>）需要工作目录整洁，以免意外覆盖更改。</p>
+<h2 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h2><p><code>git log</code> 命令显示已提交的快照。你可以列出项目历史，筛选，以及搜索特定更改。<code>git status</code> 允许你查看工作目录和缓存区，而 <code>git log</code> 只作用于提交的项目历史。</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:52d530ce-7f51-48e3-920b-a18f776048d3/01.svg" alt="Git Tutorial: git status vs. git log"></p>
+<p>log 输出可以有很多种自定义的方式，从简单地筛选提交，到用完全自定义的格式显示。其中一些最常用的 <code>git log</code> 配置如下所示。</p>
+<h3 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
+<p>使用默认格式显示完整地项目历史。如果输出超过一屏，你可以用 <code>空格键</code> 来滚动，按 <code>q</code> 退出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log -n &lt;limit&gt;</span><br></pre></td></tr></table></figure>
+<p>用 <code>&lt;limit&gt;</code> 限制提交的数量。比如 <code>git log -n 3</code> 只会显示 3 个提交。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline</span><br></pre></td></tr></table></figure>
+<p>将每个提交压缩到一行。当你需要查看项目历史的上层情况时这会很有用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --stat</span><br></pre></td></tr></table></figure>
+<p>除了 <code>git log</code> 信息之外，包含哪些文件被更改了，以及每个文件相对的增删行数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log -p</span><br></pre></td></tr></table></figure>
+<p>显示代表每个提交的一堆信息。显示每个提交全部的差异（diff），这也是项目历史中最详细的视图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --author=&quot;&lt;pattern&gt;&quot;</span><br></pre></td></tr></table></figure>
+<p>搜索特定作者的提交。<code>&lt;pattern&gt;</code> 可以是字符串或正则表达式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --grep=&quot;&lt;pattern&gt;&quot;</span><br></pre></td></tr></table></figure>
+<p>搜索提交信息匹配特定 <code>&lt;pattern&gt;</code> 的提交。<code>&lt;pattern&gt;</code> 可以是字符串或正则表达式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log &lt;since&gt;..&lt;until&gt;</span><br></pre></td></tr></table></figure>
+<p>只显示发生在 <code>&lt;since&gt;</code> 和 <code>&lt;until&gt;</code> 之间的提交。两个参数可以是提交 ID、分支名、<code>HEAD</code> 或是任何一种引用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<p>只显示包含特定文件的提交。查找特定文件的历史这样做会很方便。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --graph --decorate --oneline</span><br></pre></td></tr></table></figure>
+<p>还有一些有用的选项。<code>--graph</code> 标记会绘制一幅字符组成的图形，左边是提交，右边是提交信息。<code>--decorate</code> 标记会加上提交所在的分支名称和标签。<code>--oneline</code> 标记将提交信息显示在同一行，一目了然。</p>
+<h3 id="讨论-1"><a href="#讨论-1" class="headerlink" title="讨论"></a>讨论</h3><p><code>git log</code> 命令是 Git 查看项目历史的基本工具。当你要寻找项目特定的一个版本或者弄明白合并功能分支时引入了哪些变化，你就会用到这个命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">commit 3157ee3718e180a9476bf2e5cab8e3f1e78a73b7</span><br><span class="line">Author: John Smith</span><br></pre></td></tr></table></figure>
+<p>大多数时候都很简单直接。但是，第一行需要解释下。<code>commit</code> 后面 40 个字的字符串是提交内容的 SHA-1 校验总和（checksum）。它有两个作用。一是保证提交的正确性——如果它被损坏了，提交会生成一个不同的校验总和。第二，它是提交唯一的标识 ID。</p>
+<p>这个 ID 可以用于 <code>git log</code> 这样的命令中来引用具体的提交。比如，<code>git log 3157e..5ab91</code> 会显示所有ID在 <code>3157e</code> 和 <code>5ab91</code> 之间的提交。除了校验总和之外，分支名、HEAD 关键字也是常用的引用提交的方法。<code>HEAD</code> 总是指向当前的提交，无论是分支还是特定提交也好。</p>
+<p>~字符用于表示提交的父节点的相对引用。比如，<code>3157e~1</code> 指向 <code>3157e</code> 前一个提交,<code>HEAD~3</code> 是当前提交的回溯3个节点的提交。</p>
+<p>所有这些标识方法的背后都是为了让你对特定提交进行操作。<code>git log</code> 命令一般是这些交互的起点，因为它让你找到你想要的提交。</p>
+<h3 id="栗子-1"><a href="#栗子-1" class="headerlink" title="栗子"></a>栗子</h3><p><em>用法</em> 一节提供了 <code>git log</code> 很多的栗子，但请记住，你可以将很多选项用在同一个命令中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --author=&quot;John Smith&quot; -p hello.py</span><br></pre></td></tr></table></figure>
+<p>这个命令会显示 <code>John Smith</code> 作者对 <code>hello.py</code> 文件所做的所有更改的差异比较（diff）。</p>
+<p>..句法是比较分支很有用的工具。下面的栗子显示了在 <code>some-feature</code> 分支而不在 <code>master</code> 分支的所有提交的概览。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline master..some-feature</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这篇文章是<a href="https://github.com/geeeeeeeeek/git-recipes/" target="_blank" rel="noopener"><strong>「git-recipes」</strong></a>的一部分，点击 <a href="https://github.com/geeeeeeeeek/git-recipes/wiki/" target="_blank" rel="noopener"><strong>目录</strong></a> 查看所有章节。</p>
+<p>如果你觉得文章对你有帮助，欢迎点击右上角的 <strong>Star</strong> :star2: 或 <strong>Fork</strong> :fork_and_knife:。</p>
+<p>如果你发现了错误，或是想要加入协作，请参阅 <a href="https://github.com/geeeeeeeeek/git-recipes/issues/1" target="_blank" rel="noopener">Wiki 协作说明</a>。</p>
+</blockquote>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">S.M.</p>
+              <p class="site-description motion-element" itemprop="description">The records of my path.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#检查仓库状态"><span class="nav-number">1.</span> <span class="nav-text">检查仓库状态</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-status"><span class="nav-number">1.1.</span> <span class="nav-text">git status</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法"><span class="nav-number">1.1.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讨论"><span class="nav-number">1.1.2.</span> <span class="nav-text">讨论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#忽略文件"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">忽略文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#栗子"><span class="nav-number">1.1.3.</span> <span class="nav-text">栗子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-log"><span class="nav-number">1.2.</span> <span class="nav-text">git log</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讨论-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">讨论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#栗子-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">栗子</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">S.M.</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

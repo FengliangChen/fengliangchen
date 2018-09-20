@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Git提交引用和引用日志 BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。  提交是 Git 的精髓所在，你无时不刻不在创建和缓存提交、查看以前的提交，或者用各种Git命令在仓库间转移你的提交。大多数的命令都对同一个提交操作，而有些会接受提交的引用作">
+<meta name="keywords" content="tech">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Good Day">
+<meta property="og:url" content="http://yoursite.com/git-instruction/5.5-Git提交引用.html">
+<meta property="og:site_name" content="Good Day">
+<meta property="og:description" content="Git提交引用和引用日志 BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。  提交是 Git 的精髓所在，你无时不刻不在创建和缓存提交、查看以前的提交，或者用各种Git命令在仓库间转移你的提交。大多数的命令都对同一个提交操作，而有些会接受提交的引用作">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:62440330-6153-4f43-9554-b94c7b205e62/01.svg">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:cb2ce970-3ef4-4eda-96a9-fe990745f5a7/02.svg">
+<meta property="og:updated_time" content="2018-09-03T18:17:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Good Day">
+<meta name="twitter:description" content="Git提交引用和引用日志 BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。  提交是 Git 的精髓所在，你无时不刻不在创建和缓存提交、查看以前的提交，或者用各种Git命令在仓库间转移你的提交。大多数的命令都对同一个提交操作，而有些会接受提交的引用作">
+<meta name="twitter:image" content="https://wac-cdn.atlassian.com/dam/jcr:62440330-6153-4f43-9554-b94c7b205e62/01.svg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/git-instruction/5.5-Git提交引用.html"/>
+
+
+
+
+
+  <title> | Good Day</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Good Day</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">To discover</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h1 id="Git提交引用和引用日志"><a href="#Git提交引用和引用日志" class="headerlink" title="Git提交引用和引用日志"></a>Git提交引用和引用日志</h1><blockquote>
+<p>BY 童仲毅（<a href="https://github.com/geeeeeeeeek/git-recipes/" target="_blank" rel="noopener">geeeeeeeeek@github</a>）</p>
+<p>这是一篇在<a href="https://www.atlassian.com/git/tutorials/refs-and-the-reflog" target="_blank" rel="noopener">原文（BY atlassian）</a>基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（<a href="http://creativecommons.org/licenses/by/2.5/au/deed.zh" target="_blank" rel="noopener">CC BY 2.5 AU</a>）协议共享。</p>
+</blockquote>
+<p>提交是 Git 的精髓所在，你无时不刻不在创建和缓存提交、查看以前的提交，或者用各种Git命令在仓库间转移你的提交。大多数的命令都对同一个提交操作，而有些会接受提交的引用作为参数。比如，你可以给 <code>git checkout</code> 传入一个引用来查看以前的提交，或者传入一个分支名来切换到对应的分支。</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:62440330-6153-4f43-9554-b94c7b205e62/01.svg" alt="引用一次提交的各种方式"></p>
+<p>知道提交的各种引用方式之后，Git 的命令就会变得更加强大。在这章中，我们研究提交的各种引用方式，来一窥 <code>git checkout</code>、<code>git branch</code>、<code>git push</code> 等命令的工作原理。</p>
+<p>我们还会学到如何使用 Git 的引用日志查看似乎已被删除的提交。</p>
+<h2 id="哈希字串"><a href="#哈希字串" class="headerlink" title="哈希字串"></a>哈希字串</h2><p>引用一个提交最直接的方式是通过 SHA-1 的哈希字串，这是每个提交唯一的 ID。你可以在 <code>git log</code> 的输出中找到提交的哈希字串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">commit 0c708fdec272bc4446c6cabea4f0022c2b616eba</span><br><span class="line">Author: Mary Johnson &lt;mary@example.com&gt;</span><br><span class="line">Date:   Wed Jul 9 16:37:42 2014 -0500</span><br><span class="line"></span><br><span class="line">    一些提交信息</span><br></pre></td></tr></table></figure>
+<p>在 Git 命令中传递时，你只需要提供足以确定那个提交的哈希子串即可。比如，你可以这样用 <code>git show</code> 的命令显示上面的提交：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show 0c708f</span><br></pre></td></tr></table></figure>
+<p>有时，我们需要把分支、标签或者其他间接的引用转变成对应提交的哈希。<code>git rev-parse</code> 命令正是你需要的。下面这个命令返回 master 分支提交的哈希字串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rev-parse master</span><br></pre></td></tr></table></figure>
+<p>当你写的自定义脚本中需要将提交引用作为参数时，这个命令非常有用。你可以让 <code>git rev-parse</code> 帮你处理转换，而不用手动做这件事。</p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>ref 是提交的间接引用。你可以把它当做哈希字串的别名，但对用户更友好。这就是 Git 内部表示分支和标签的机制。</p>
+<p>引用以一段普通的文本存在于 <code>.git/refs</code> 目录中，就是我们平时说的那个 <code>.git</code>。你去 <code>.git/refs</code> 文件夹查看仓库中的引用。你可以看到下面这样的结构，但具体的文件取决于你的仓库中有什么分支和标签，以及你的远程仓库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.git/refs/</span><br><span class="line">    heads/</span><br><span class="line">        master</span><br><span class="line">        some-feature</span><br><span class="line">    remotes/</span><br><span class="line">        origin/</span><br><span class="line">            master</span><br><span class="line">    tags/</span><br><span class="line">        v0.9</span><br></pre></td></tr></table></figure>
+<p><code>heads</code>目录定义了你本地仓库中的所有分支。每一个文件名和你的分支名一一对应，文件中包含一个提交的哈希字串。这个就是分支顶端的所在位置。为了验证这一点，试试在 Git 根目录运行下面这两个命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 输出`refs/heads/master`文件内容</span><br><span class="line">cat .git/refs/heads/master</span><br><span class="line"></span><br><span class="line"># 查看`master`分支尾端的提交</span><br><span class="line">git log -1 master</span><br></pre></td></tr></table></figure>
+<p><code>cat</code> 命令返回的哈希字串和 <code>git log</code> 命令显示的哈希字串应该是一致的。</p>
+<p>如果要改变 master 分支的位置，Git 只需要更改 <code>refs/heads/master</code> 的文件内容。同样地，创建新的分支也只需要将当前提交的哈希字串写入到新的文件中。这也是为什么 Git 分支比 SVN 轻量那么多的其中一个原因。</p>
+<p><code>tags</code> 目录也是以相同的方式存储，只不过其中存的是标签而不是分支。<code>remotes</code> 目录将你之前用 <code>git remote</code> 命令创建的所有远程仓库以子目录的形式一一列出。在每个文件夹中，你可以找到所有 fetch 到本地仓库的远程分支。</p>
+<h3 id="指定引用"><a href="#指定引用" class="headerlink" title="指定引用"></a>指定引用</h3><p>当你向 Git 命令传入引用的时候，你既可以指定引用完整的名称，也可以使用缩写，然后让 Git 来寻找匹配。你应该已经对引用的缩写很熟悉了，每次你通过名称引用分支的时候都会这么做。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show some-feature</span><br></pre></td></tr></table></figure>
+<p>这里的 <code>some-feature</code> 参数其实是分支名的缩写。Git 在使用前将它解析成 <code>refs/heads/some-feature</code>。你也可以在命令行中指定引用的全称，就像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show refs/heads/some-feature</span><br></pre></td></tr></table></figure>
+<p>这避免了引用可能产生的所有歧义。这是非常必要的，比如你同时有一个标签和分支都叫 <code>some-feature</code>。然而，如果使用正常的命名规范，你不应该有这样的歧义。</p>
+<p>我们会在 refspec 一节见到更多引用名称。</p>
+<h2 id="打包引用目录"><a href="#打包引用目录" class="headerlink" title="打包引用目录"></a>打包引用目录</h2><p>对于大型仓库，Git 会周期性地执行垃圾回收来移除不需要的对象，将所有引用文件压缩成单个文件来获得更好的性能。你可以使用这个命令强制垃圾回收来执行压缩：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git gc</span><br></pre></td></tr></table></figure>
+<p>这个命令把 <code>refs</code> 文件夹中所有单独的分支和标签移动到了 <code>.git</code> 根目录下的 <code>packed-refs</code> 文件中。如果你打开这个文件，你会发现提交的哈希字串和引用之间的映射关系：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">00f54250cf4e549fdfcafe2cf9a2c90bc3800285 refs/heads/feature</span><br><span class="line">0e25143693cfe9d5c2e83944bbaf6d3c4505eb17 refs/heads/master</span><br><span class="line">bb883e4c91c870b5fed88fd36696e752fb6cf8e6 refs/tags/v0.9</span><br></pre></td></tr></table></figure>
+<p>另一方面，正常的 Git 功能不会受到任何影响。但如果你好奇你的 <code>.git/refs</code> 文件夹为什么是空的，这一节告诉你了答案。</p>
+<h2 id="特殊的引用"><a href="#特殊的引用" class="headerlink" title="特殊的引用"></a>特殊的引用</h2><p>除了 <code>refs</code> 文件夹外，<code>.git</code> 根目录还有一些特殊的引用。如下所示：</p>
+<ul>
+<li>HEAD – 当前所在的提交或分支。</li>
+<li>FETCH_HEAD – 远程仓库中 fetch 到的最新一次提交。</li>
+<li>ORIG_HEAD – HEAD 的备份引用，避免损坏。</li>
+<li>MERGE_HEAD – 你通过 <code>git merge</code> 并入当前分支的引用（们）。</li>
+<li>CHERRY_PICK_HEAD – 你 <code>cherry pick</code> 使用的引用。</li>
+</ul>
+<p>这些引用由 Git 在需要时创建和更新。比如说，<code>git pull</code> 命令首先运行 <code>git fetch</code>，而 <code>FETCH_HEAD</code> 引用随之改变。然后，运行 <code>git merge FETCH_HEAD</code> 来将 fetch 到的分支最终并入仓库。当然，你也可以使用其他任何引用，因为我相信你已经对 <code>HEAD</code> 很熟悉了。</p>
+<p>这些文件包含的内容取决于它们的类型和你的仓库状态。<code>HEAD</code> 引用可以包含符号链接（指向另一个引用而不是哈希字串），或是提交的哈希字串。比如说，看看当你在 master 分支上时 <code>HEAD</code> 的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">cat .git/HEAD</span><br></pre></td></tr></table></figure>
+<p>这个命令会输出 <code>ref: refs/heads/master</code>，也就是说 HEAD 指向 <code>refs/heads/master</code> 这个引用。这也正是 Git 如何知道现在所在的是 master 分支。如果你要切换分支，<code>HEAD</code> 的内容将会被更新到新的分支。但如果你要切换到一个提交而不是分支，<code>HEAD</code> 会包含一个提交的哈希而不是符号引用。这就是 Git 如何知道现在 <code>HEAD</code> 处于分离状态。</p>
+<p>在大多数情况下，<code>HEAD</code> 是你唯一用得到的引用。其它引用一般只在写底层脚本，接触到 Git 内部的工作机制时才会用到。</p>
+<h2 id="refspec"><a href="#refspec" class="headerlink" title="refspec"></a>refspec</h2><p>refspec 将本地分支和远程分支对应起来。我们可以通过它用本地的 Git 命令管理远程分支，设置一些高级的 <code>git push</code> 和 <code>git fetch</code> 行为。</p>
+<p>refspec 的定义是这样的：<code>[+]&lt;src&gt;:&lt;dst&gt;</code>。<code>&lt;src&gt;</code> 参数是本地的源分支，<code>&lt;dst&gt;</code> 是远程的目标分支。可选的 <code>+</code> 号强制远程仓库采用非快速向前的更新策略。</p>
+<p>refspec 可以和 <code>git push</code> 一起使用，用来指定远程的分支的名称。比如，下面这个命令将 master 分支推送到远程 origin，就像一般的 <code>git push</code> 一样，但它使用 qa-master 作为远程仓库中的分支名。对于 QA 团队来说，这个方法非常有用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master:refs/heads/qa-master</span><br></pre></td></tr></table></figure>
+<p>你也可以用 refspec 来删除远程分支。feature 分支的工作流经常会遇到这种情况，将 feature 分支推送到远程仓库中（比如说为了备份）。你删除本地的 feature 分支之后，远程的 feature 分支依然存在，虽然现在我们已经不再需要它。你可以 push 一个 <code>&lt;src&gt;</code> 参数为空的 refspec 来删除它们，就像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin:some-feature</span><br></pre></td></tr></table></figure>
+<p>这非常方便，因为你不需要登录到你的远程仓库然后手动删除这些远程分支。注意，在 Git v1.7.0 之后你可以用 <code>--delete</code> 标记代替上面这个方法。下面这个命令和上面的命令作用相同：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin --delete some-feature</span><br></pre></td></tr></table></figure>
+<p>在 Git 配置文件中增加几行，你就可以更改 <code>git fetch</code> 的行为。默认地，<code>git fetch</code> 会 fetch 远程仓库中所有分支。原因就是 <code>.git/config</code> 文件的这段配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[remote &quot;origin&quot;]</span><br><span class="line">    url = https://git@github.com:mary/example-repo.git</span><br><span class="line">    fetch = +refs/heads/*:refs/remotes/origin/*</span><br></pre></td></tr></table></figure>
+<p>fetch 这一行告诉 <code>git fetch</code> 从 origin 仓库中下载所有分支。但是，一些工作流不需要所有分支。比如，很多持续集成工作流只关心 master 分支。为了做到这一点，我们需要将 fetch 这行改成下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[remote &quot;origin&quot;]</span><br><span class="line">    url = https://git@github.com:mary/example-repo.git</span><br><span class="line">    fetch = +refs/heads/master:refs/remotes/origin/master</span><br></pre></td></tr></table></figure>
+<p>你还可以类似地修改 <code>git push</code> 的配置。比如，如果你总是将 master 分支推送到 origin 仓库的 qa-master 分支（就像我们之前做的一样），你要把配置文件改成这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[remote &quot;origin&quot;]</span><br><span class="line">    url = https://git@github.com:mary/example-repo.git</span><br><span class="line">    fetch = +refs/heads/master:refs/remotes/origin/master</span><br><span class="line">    push = refs/heads/master:refs/heads/qa-master</span><br></pre></td></tr></table></figure>
+<p>refspec 给了你完全的掌控权，可以定制 Git 命令如何在仓库之间转移分支。你可以重命名或是删除你的本地分支，fetch 或是 push 不同的分支名，修改 <code>git push</code> 和 <code>git fetch</code> 的设置，只对你想要的分支进行操作。</p>
+<h2 id="相对引用"><a href="#相对引用" class="headerlink" title="相对引用"></a>相对引用</h2><p>你还可以通过提交之间的相对关系来引用。<code>~</code> 符号让你访问父节点的提交。比如说，下面这个命令显示 <code>HEAD</code> 祖父节点的提交：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show HEAD~2</span><br></pre></td></tr></table></figure>
+<p>但是，面对合并提交（merge commit）的时候，事情就会变得有些复杂。因为合并提交有多个父节点，所以你可以找到多条回溯的路径。对于 3 路合并，第一个父节点是你执行合并时的分支，第二个父节点是你传给 <code>git merge</code> 命令的分支。</p>
+<p><code>~</code> 符号总是选择合并提交的第一个父节点。如果你想选择其他父节点，你需要用 <code>^</code> 符号来指定。比如说，<code>HEAD</code> 是一个合并提交，下面这个命令返回 <code>HEAD</code> 的第二个父节点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show HEAD^2</span><br></pre></td></tr></table></figure>
+<p>你可以使用不止一个 <code>^</code> 来查看超过一层的节点。比如，下面的命令显示的是 <code>HEAD</code> 的祖父节点，也就是 <code>HEAD</code> 第二个父节点的父节点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show HEAD^2^1</span><br></pre></td></tr></table></figure>
+<p>为了阐明 <code>~</code> 和 <code>^</code> 是如何工作的，下面这张图告诉你如何使用相对引用，来指向任意的提交。有的提交可以通过多种方式引用。</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:cb2ce970-3ef4-4eda-96a9-fe990745f5a7/02.svg" alt="Accessing commits using relative refs"></p>
+<p>相对引用在命令中的用法和普通的引用相同。比如，下面所有命令中使用的都是相对引用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 只列出合并提交的第二个父节点的父节点</span><br><span class="line">git log HEAD^2</span><br><span class="line"></span><br><span class="line"># 移除当前分支最新的 3 个提交</span><br><span class="line">git reset HEAD~3</span><br><span class="line"></span><br><span class="line"># 交互式rebase当前分支最新的 3 个提交</span><br><span class="line">git rebase -i HEAD~3</span><br></pre></td></tr></table></figure>
+<h2 id="引用日志"><a href="#引用日志" class="headerlink" title="引用日志"></a>引用日志</h2><p>引用日志是 Git 的安全网。它记录了你在仓库中做的所有更改，不管你有没有提交。你也可以认为这是你本地更改的完整历史记录。运行 <code>git reflog</code> 命令查看引用日志。它应该会打印出像下面这样的信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">400e4b7 HEAD@&#123;0&#125;: checkout: moving from master to HEAD~2</span><br><span class="line">0e25143 HEAD@&#123;1&#125;: commit (amend): 将一些很赞的新特性引入`master`</span><br><span class="line">00f5425 HEAD@&#123;2&#125;: commit (merge): 合并&apos;feature&apos;分支</span><br><span class="line">ad8621a HEAD@&#123;3&#125;: commit: 结束feature分支开发</span><br></pre></td></tr></table></figure>
+<p>说人话就是：</p>
+<ul>
+<li>你刚刚切换到 <code>HEAD~2</code></li>
+<li>你刚刚修改了一个提交信息</li>
+<li>你刚刚把 feature 分支合并到了 master 分支</li>
+<li>你刚刚提交了一份缓存</li>
+</ul>
+<p><code>HEAD{&lt;n&gt;}</code> 语法允许你引用保存在日志中的提交。这和上一节的 <code>HEAD~&lt;n&gt;</code> 引用差不多，不过 <code>&lt;n&gt;</code> 指的是引用日志中的对象，而不是提交历史。</p>
+<p>你可以用办法回到之前可能已经丢失的状态。比如，你刚刚用 <code>git reset</code> 方法粉碎了新的 feature 分支。你的引用日志看上去可能会是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ad8621a HEAD@&#123;0&#125;: reset: moving to HEAD~3</span><br><span class="line">298eb9f HEAD@&#123;1&#125;: commit: 一些提交信息</span><br><span class="line">bbe9012 HEAD@&#123;2&#125;: commit: 继续开发</span><br><span class="line">9cb79fa HEAD@&#123;3&#125;: commit: 开始新特性开发</span><br></pre></td></tr></table></figure>
+<p><code>git reset</code> 前的三个提交现在都成了悬挂的了，也就是说除了引用日志之外没有办法再引用到它们。现在，假设你意识到了你不应该丢掉你全部的工作。你只需要切换到 <code>HEAD@{1}</code> 这个提交就能回到你运行 <code>git reset</code> 之前仓库的状态。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout HEAD@&#123;1&#125;</span><br></pre></td></tr></table></figure>
+<p>这会让你处于 <code>HEAD</code> 分离的状态。你可以从这里开始，创建新的分支，继续你的工作。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>你现在对 Git 提交的引用应该已经相当熟悉了。我们知道了分支和标签是如何存在于 <code>.git</code> 的子文件夹 refs 中，如何读取打包的引用文件，如何使用 refspec 来进行更高级的 push 和 fetch 操作，如何使用 <code>~</code> 和 <code>^</code> 符号来遍历分支结构。</p>
+<p>我们还了解了引用日志，来引用到其他方式已经不存在的提交。这是一种很好的恢复误删提交的方法。</p>
+<p>它的意义在于：在任何开发场景下，你都能找到你需要的特定提交。你很容易就可以把这些技巧用在你一有的 Git 知识中，因为很多常用的命令都接受引用作为参数，包括 <code>git log</code>、<code>git show</code>、<code>git checkout</code>、<code>git reset</code>、<code>git revert</code>、<code>git rebase</code> 等等。</p>
+<blockquote>
+<p>这篇文章是<a href="https://github.com/geeeeeeeeek/git-recipes/" target="_blank" rel="noopener"><strong>「git-recipes」</strong></a>的一部分，点击 <a href="https://github.com/geeeeeeeeek/git-recipes/wiki/" target="_blank" rel="noopener"><strong>目录</strong></a> 查看所有章节。</p>
+<p>如果你觉得文章对你有帮助，欢迎点击右上角的 <strong>Star</strong> :star2: 或 <strong>Fork</strong> :fork_and_knife:。</p>
+<p>如果你发现了错误，或是想要加入协作，请参阅 <a href="https://github.com/geeeeeeeeek/git-recipes/issues/1" target="_blank" rel="noopener">Wiki 协作说明</a>。</p>
+</blockquote>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">S.M.</p>
+              <p class="site-description motion-element" itemprop="description">The records of my path.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git提交引用和引用日志"><span class="nav-number">1.</span> <span class="nav-text">Git提交引用和引用日志</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希字串"><span class="nav-number">1.1.</span> <span class="nav-text">哈希字串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-number">1.2.</span> <span class="nav-text">引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指定引用"><span class="nav-number">1.2.1.</span> <span class="nav-text">指定引用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打包引用目录"><span class="nav-number">1.3.</span> <span class="nav-text">打包引用目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊的引用"><span class="nav-number">1.4.</span> <span class="nav-text">特殊的引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#refspec"><span class="nav-number">1.5.</span> <span class="nav-text">refspec</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相对引用"><span class="nav-number">1.6.</span> <span class="nav-text">相对引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用日志"><span class="nav-number">1.7.</span> <span class="nav-text">引用日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.8.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">S.M.</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

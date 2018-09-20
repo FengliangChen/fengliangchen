@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="保存你的更改 BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。  git addgit add 命令将工作目录中的变化添加到缓存区。它告诉 Git 你想要在下一次提交时包含这个文件的更新。但是，git add 不会怎么影响你的仓库——在你运行 git">
+<meta name="keywords" content="tech">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Good Day">
+<meta property="og:url" content="http://yoursite.com/git-instruction/2.3-保存你的更改.html">
+<meta property="og:site_name" content="Good Day">
+<meta property="og:description" content="保存你的更改 BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。  git addgit add 命令将工作目录中的变化添加到缓存区。它告诉 Git 你想要在下一次提交时包含这个文件的更新。但是，git add 不会怎么影响你的仓库——在你运行 git">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:0f27e004-f2f5-4890-921d-65fa77ba2774/01.svg">
+<meta property="og:image" content="https://www.atlassian.com/dam/jcr:7406fe56-d36d-44cf-92e3-b28e4bae36f8/02.svg">
+<meta property="og:updated_time" content="2018-09-03T18:17:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Good Day">
+<meta name="twitter:description" content="保存你的更改 BY 童仲毅（geeeeeeeeek@github） 这是一篇在原文（BY atlassian）基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。  git addgit add 命令将工作目录中的变化添加到缓存区。它告诉 Git 你想要在下一次提交时包含这个文件的更新。但是，git add 不会怎么影响你的仓库——在你运行 git">
+<meta name="twitter:image" content="https://wac-cdn.atlassian.com/dam/jcr:0f27e004-f2f5-4890-921d-65fa77ba2774/01.svg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/git-instruction/2.3-保存你的更改.html"/>
+
+
+
+
+
+  <title> | Good Day</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Good Day</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">To discover</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h1 id="保存你的更改"><a href="#保存你的更改" class="headerlink" title="保存你的更改"></a>保存你的更改</h1><blockquote>
+<p>BY 童仲毅（<a href="https://github.com/geeeeeeeeek/git-recipes/" target="_blank" rel="noopener">geeeeeeeeek@github</a>）</p>
+<p>这是一篇在<a href="https://www.atlassian.com/git/tutorials/saving-changes" target="_blank" rel="noopener">原文（BY atlassian）</a>基础上演绎的译文。除非另行注明，页面上所有内容采用知识共享-署名（<a href="http://creativecommons.org/licenses/by/2.5/au/deed.zh" target="_blank" rel="noopener">CC BY 2.5 AU</a>）协议共享。</p>
+</blockquote>
+<h2 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h2><p><code>git add</code> 命令将工作目录中的变化添加到缓存区。它告诉 Git 你想要在下一次提交时包含这个文件的更新。但是，<code>git add</code> 不会怎么影响你的仓库——在你运行 <code>git commit</code> 前更改都不会被记录。</p>
+<p>使用这些命令之时，你还需要 <code>git status</code> 来查看工作目录和缓存区的状态。</p>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<p>将 <code>&lt;file&gt;</code> 中的更改加入下次提交的缓存。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;directory&gt;</span><br></pre></td></tr></table></figure>
+<p>将 <code>&lt;directory&gt;</code> 下的更改加入下次提交的缓存。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -i</span><br></pre></td></tr></table></figure>
+<p>开始交互式的缓存，你可以选择文件的一部分加入到下次提交缓存。它会向你展示一堆更改，等待你输入一个命令。<code>y</code> 将这块更改加入缓存，<code>n</code> 忽略这块更改，<code>s</code> 将它分割成更小的块，<code>e</code> 手动编辑这块更改，以及 <code>q</code> 退出。</p>
+<h3 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h3><p><code>git add</code> 和 <code>git commit</code> 这两个命令组成了最基本的 Git 工作流。每一个 Git 用户都需要理解这两个命令，不管他们团队的协作模型是如何的。我有一千种方式可以将项目版本记录在仓库的历史中。</p>
+<p>在一个只有编辑、缓存、提交这样基本流程的项目上开发。首先，你要在工作目录中编辑你的文件。当你准备备份项目的当前状态时，你通过 <code>git add</code> 来缓存更改。当你对缓存的快照满意之后，你通过 <code>git commit</code> 将它提交到你的项目历史中去。</p>
+<p><img src="https://wac-cdn.atlassian.com/dam/jcr:0f27e004-f2f5-4890-921d-65fa77ba2774/01.svg" alt="Git Tutorial: git add Snapshot"></p>
+<p><code>git add</code> 命令不能和 <code>svn add</code> 混在一起理解，后者将文件添加到仓库中。而 <code>git add</code> 发生于更抽象的 <em>更改</em> 层面。也就是说，<code>git add</code> 在每次你修改一个文件时都需要被调用，而 <code>svn add</code> 只需要每个文件调用一次。这听上去很多余，但这样的工作流使得一个项目更容易组织。</p>
+<h4 id="缓存区"><a href="#缓存区" class="headerlink" title="缓存区"></a>缓存区</h4><p>缓存区是 Git 更为独特的地方之一，如果你是从 SVN（甚至是 Mercurial）迁移而来，那你可得花点时间理解了。你可以简单地把它想成是工作目录和项目历史之间的缓冲区。</p>
+<p>缓存允许你在实际提交到项目历史之前，将相关的更改组合成一份高度专注的快照，而不是将你上次提交以后产生的所有更改一并提交。也就是说你可以更改各种不相关的文件，然后回过去将它们按逻辑切分，将相关的更改添加到缓存，一份一份提交。在任何修改控制系统中，很重要的一点是提交必须是原子性的，以便于追踪 bug，并用最小的代价回滚更改。</p>
+<h3 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h3><p>当你开始新项目的时候，<code>git add</code> 和 <code>svn import</code> 类似。为了创建当前目录的初始提交，使用下面两个命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure>
+<p>当你项目设置好之后，新的文件可以通过路径传递给 <code>git add</code> 来添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add hello.py</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure>
+<p>上面的命令同样可以用于记录已有文件的更改。重复一次，Git 不会区分缓存的更改来自新文件，还是仓库中已有的文件。</p>
+<h2 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h2><p><code>git commit</code>命令将缓存的快照提交到项目历史。提交的快照可以认为是项目安全的版本，Git 永远不会改变它们，除非你这么要求。和 <code>git add</code> 一样，这是最重要的 Git 命令之一。</p>
+<p>尽管和它和 <code>svn commit</code> 名字一样，但实际上它们毫无关联。快照被提交到本地仓库，不会和其他 Git 仓库有任何交互。</p>
+<h3 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit</span><br></pre></td></tr></table></figure>
+<p>提交已经缓存的快照。它会运行文本编辑器，等待你输入提交信息。当你输入信息之后，保存文件，关闭编辑器，创建实际的提交。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;&lt;message&gt;&quot;</span><br></pre></td></tr></table></figure>
+<p>提交已经缓存的快照。但将 <code>&lt;message&gt;</code> 作为提交信息，而不是运行文本编辑器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -a</span><br></pre></td></tr></table></figure>
+<p>提交一份包含工作目录所有更改的快照。它只包含跟踪过的文件的更改（那些之前已经通过 <code>git add</code> 添加过的文件）。</p>
+<h3 id="讨论-1"><a href="#讨论-1" class="headerlink" title="讨论"></a>讨论</h3><p>快照总是提交到 <em>本地</em> 仓库。这一点和 SVN 截然不同，后者的工作拷贝提交到中央仓库。而 Git 不会强制你和中央仓库进行交互，直到你准备好了。就像缓存区是工作目录和项目历史之间的缓冲地带，每个开发者的本地仓库是他们贡献的代码和中央仓库之间的缓冲地带。</p>
+<p>这一点改变了 Git 用户基本的开发模型。Git 开发者可以在本地仓库中积累一些提交，而不是一发生更改就直接提交到中央仓库。这对于 SVN 风格的协作有着诸多优点：更容易将功能切分成原子性的提交，让相关的提交组合在一起，发布到中央仓库之前整理好本地的历史。开发者得以在一个隔离的环境中工作，直到他们方便的时候再整合代码。</p>
+<h4 id="记录快照，而不是记录差异"><a href="#记录快照，而不是记录差异" class="headerlink" title="记录快照，而不是记录差异"></a>记录快照，而不是记录差异</h4><p>SVN 和 Git 除了使用上存在巨大差异，它们底层的实现同样遵循截然不同的设计哲学。SVN 追踪文件的 <em>变化</em> ，而 Git 的版本控制模型基于 <em>快照</em> 。比如说，一个 SVN 提交由仓库中原文件相比的差异（diff）组成。而 Git 在每次提交中记录文件的 <em>完整内容</em> 。</p>
+<p><img src="https://www.atlassian.com/dam/jcr:7406fe56-d36d-44cf-92e3-b28e4bae36f8/02.svg" alt="Git Tutorial: Snapshots, Not Differences"></p>
+<p>这让很多 Git 操作比 SVN 来的快得多，因为文件的某个版本不需要通过版本间的差异组装得到——每个文件完整的修改能立刻从 Git 的内部数据库中得到。</p>
+<p>Git 的快照模型对它版本控制模型的方方面面都有着深远的影响，从分支到合并工具，再到协作工作流，以至于影响了所有特性。</p>
+<h3 id="栗子-1"><a href="#栗子-1" class="headerlink" title="栗子"></a>栗子</h3><p>下面这个栗子假设你编辑了 <code>hello.py</code> 文件的一些内容，并且准备好将它提交到项目历史。首先，你需要用 <code>git add</code> 缓存文件，然后提交缓存的快照。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add hello.py</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure>
+<p>它会打开一个文件编辑器（可以通过 <code>git config</code> 设置) 询问提交信息，同时列出将被提交的文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Please enter the commit message for your changes. Lines starting</span><br><span class="line"># with &apos;#&apos; will be ignored, and an empty message aborts the commit.</span><br><span class="line"># On branch master</span><br><span class="line"># Changes to be committed:</span><br><span class="line"># (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line">#</span><br><span class="line">#modified: hello.py</span><br></pre></td></tr></table></figure>
+<p>Git 对提交信息没有特定的格式限制，但约定俗成的格式是：在第一行用 50 个以内的字符总结这个提交，留一空行，然后详细阐述具体的更改。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Change the message displayed by hello.py</span><br><span class="line"></span><br><span class="line">- Update the sayHello() function to output the user&apos;s name</span><br><span class="line">- Change the sayGoodbye() function to a friendlier message</span><br></pre></td></tr></table></figure>
+<p>注意，很多开发者倾向于在提交信息中使用一般现在时态。这样看起来更像是对仓库进行的操作，让很多改写历史的操作更加符合直觉。</p>
+<blockquote>
+<p>这篇文章是<a href="https://github.com/geeeeeeeeek/git-recipes/" target="_blank" rel="noopener"><strong>「git-recipes」</strong></a>的一部分，点击 <a href="https://github.com/geeeeeeeeek/git-recipes/wiki/" target="_blank" rel="noopener"><strong>目录</strong></a> 查看所有章节。</p>
+<p>如果你觉得文章对你有帮助，欢迎点击右上角的 <strong>Star</strong> :star2: 或 <strong>Fork</strong> :fork_and_knife:。</p>
+<p>如果你发现了错误，或是想要加入协作，请参阅 <a href="https://github.com/geeeeeeeeek/git-recipes/issues/1" target="_blank" rel="noopener">Wiki 协作说明</a>。</p>
+</blockquote>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">S.M.</p>
+              <p class="site-description motion-element" itemprop="description">The records of my path.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#保存你的更改"><span class="nav-number">1.</span> <span class="nav-text">保存你的更改</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-add"><span class="nav-number">1.1.</span> <span class="nav-text">git add</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法"><span class="nav-number">1.1.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讨论"><span class="nav-number">1.1.2.</span> <span class="nav-text">讨论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存区"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">缓存区</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#栗子"><span class="nav-number">1.1.3.</span> <span class="nav-text">栗子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-commit"><span class="nav-number">1.2.</span> <span class="nav-text">git commit</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讨论-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">讨论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#记录快照，而不是记录差异"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">记录快照，而不是记录差异</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#栗子-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">栗子</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">S.M.</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Git 简易指南(上) BY 童仲毅（geeeeeeeeek@github） 除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。git-guide 项目对本文亦有贡献。  这节是完全面向入门者的，我假设你从零开始创建一个项目并且想用 Git 来进行版本控制，因此本文会避开分支这些相对复杂的概念。 在这节中，我会介绍如何在你的个人项目中使用 Git，我们会讨论 Gi">
+<meta name="keywords" content="tech">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Good Day">
+<meta property="og:url" content="http://yoursite.com/git-instruction/2.1-Git简易指南(上).html">
+<meta property="og:site_name" content="Good Day">
+<meta property="og:description" content="Git 简易指南(上) BY 童仲毅（geeeeeeeeek@github） 除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。git-guide 项目对本文亦有贡献。  这节是完全面向入门者的，我假设你从零开始创建一个项目并且想用 Git 来进行版本控制，因此本文会避开分支这些相对复杂的概念。 在这节中，我会介绍如何在你的个人项目中使用 Git，我们会讨论 Gi">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.bootcss.com/p/git-guide/img/trees.png">
+<meta property="og:updated_time" content="2018-09-03T18:17:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Good Day">
+<meta name="twitter:description" content="Git 简易指南(上) BY 童仲毅（geeeeeeeeek@github） 除非另行注明，页面上所有内容采用知识共享-署名（CC BY 2.5 AU）协议共享。git-guide 项目对本文亦有贡献。  这节是完全面向入门者的，我假设你从零开始创建一个项目并且想用 Git 来进行版本控制，因此本文会避开分支这些相对复杂的概念。 在这节中，我会介绍如何在你的个人项目中使用 Git，我们会讨论 Gi">
+<meta name="twitter:image" content="http://www.bootcss.com/p/git-guide/img/trees.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/git-instruction/2.1-Git简易指南(上).html"/>
+
+
+
+
+
+  <title> | Good Day</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Good Day</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">To discover</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline"></h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h1 id="Git-简易指南-上"><a href="#Git-简易指南-上" class="headerlink" title="Git 简易指南(上)"></a>Git 简易指南(上)</h1><blockquote>
+<p>BY 童仲毅（<a href="https://github.com/geeeeeeeeek/git-recipes/" target="_blank" rel="noopener">geeeeeeeeek@github</a>）</p>
+<p>除非另行注明，页面上所有内容采用知识共享-署名（<a href="http://creativecommons.org/licenses/by/2.5/au/deed.zh" target="_blank" rel="noopener">CC BY 2.5 AU</a>）协议共享。<a href="https://github.com/rogerdudler/git-guide/" target="_blank" rel="noopener">git-guide</a> 项目对本文亦有贡献。</p>
+</blockquote>
+<p>这节是完全面向入门者的，我假设你从零开始创建一个项目并且想用 Git 来进行版本控制，因此本文会避开分支这些相对复杂的概念。</p>
+<p>在这节中，我会介绍如何在你的个人项目中使用 Git，我们会讨论 Git 最基本的操作——如何初始化你的项目，如何管理新的或者已有的文件，如何在远端仓库中储存你的代码。</p>
+<h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><ul>
+<li><p>Mac 用户：Xcode Command Line Tools 自带 Git（<code>xcode-select --install</code>）</p>
+</li>
+<li><p>Linux 用户：<code>sudo apt-get install git</code></p>
+</li>
+<li><p>Windows 用户：下载 <a href="git-for-windows.github.io">Git SCM</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 对于 Windows 用户，安装后如果希望在全局的 cmd 中使用 Git，需要把 git.exe 加入 PATH 环境变量中，或在 Git Bash 中使用 Git。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="检出仓库"><a href="#检出仓库" class="headerlink" title="检出仓库"></a>检出仓库</h2><p>执行如下命令以创建一个本地仓库的克隆版本：</p>
+<p><code>git clone /path/to/repository</code></p>
+<p>如果是远端服务器上的仓库，你的命令会是这个样子：</p>
+<p><code>git clone username@host:/path/to/repository</code> （通过 SSH）</p>
+<p>或者：</p>
+<p><code>git clone https:/path/to/repository.git</code> （通过 https）</p>
+<p>比如说 <code>git clone https://github.com/geeeeeeeeek/git-recipes.git</code> 可以将 git 教程 clone 到你指定的目录。</p>
+<h2 id="创建新仓库"><a href="#创建新仓库" class="headerlink" title="创建新仓库"></a>创建新仓库</h2><p>创建新文件夹，打开，然后执行 <code>git init</code> 以创建新的 git 仓库。</p>
+<blockquote>
+<p>下面每一步中，你都可以通过 <code>git status</code> 来查看你的git仓库状态。</p>
+</blockquote>
+<h2 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h2><p>你的本地仓库由 Git 维护的三棵「树」组成。第一个是你的 <code>工作目录</code>，它持有实际文件；第二个是 <code>缓存区（Index）</code>，它像个缓存区域，临时保存你的改动；最后是 <code>HEAD</code>，指向你最近一次提交后的结果。</p>
+<p><img src="http://www.bootcss.com/p/git-guide/img/trees.png" alt="enter image description here"></p>
+<blockquote>
+<p>事实上，第三个阶段是 commit history 的图。HEAD 一般是指向最新一次 commit 的引用。现在暂时不必究其细节。</p>
+</blockquote>
+<h2 id="添加与提交"><a href="#添加与提交" class="headerlink" title="添加与提交"></a>添加与提交</h2><p>你可以计划改动（把它们添加到缓存区），使用如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add &lt; filename &gt;</span><br><span class="line">git add *</span><br></pre></td></tr></table></figure>
+<p>这是 Git 基本工作流程的第一步。使用如下命令以实际提交改动：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;代码提交信息&quot;</span><br></pre></td></tr></table></figure>
+<p>现在，你的改动已经提交到了 HEAD，但是还没到你的远端仓库。</p>
+<blockquote>
+<p>在开发时，良好的习惯是根据工作进度及时 commit，并务必注意附上有意义的 commit message。创建完项目目录后，第一次提交的 commit message 一般为「Initial commit」。</p>
+</blockquote>
+<h2 id="推送改动"><a href="#推送改动" class="headerlink" title="推送改动"></a>推送改动</h2><p>你的改动现在已经在本地仓库的 HEAD 中了。执行如下命令以将这些改动提交到远端仓库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<p>可以把 master 换成你想要推送的任何分支。</p>
+<p>如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin &lt;server&gt;</span><br></pre></td></tr></table></figure>
+<p>如此你就能够将你的改动推送到所添加的服务器上去了。</p>
+<blockquote>
+<ul>
+<li>这里 origin 是 &lt;server&gt; 的别名，取什么名字都可以，你也可以在 push 时将 &lt;jserver&gt; 替换为 origin。但为了以后 push 方便，我们第一次一般都会先 remote add。</li>
+<li>如果你还没有 Git 仓库，可以在 Github 等代码托管平台上创建一个空（不要自动生成 README.md）的仓库，然后将代码 push 到远端仓库。</li>
+</ul>
+</blockquote>
+<h5 id="至此，你应该可以顺利地提交你的项目了。在下一节中，我们将涉及更多的命令，来完成更有用的操作。比如从远端的仓库拉取更新并且合并到你的本地，如何通过分支多人协作，如何处理不同分支的冲突等等。"><a href="#至此，你应该可以顺利地提交你的项目了。在下一节中，我们将涉及更多的命令，来完成更有用的操作。比如从远端的仓库拉取更新并且合并到你的本地，如何通过分支多人协作，如何处理不同分支的冲突等等。" class="headerlink" title="至此，你应该可以顺利地提交你的项目了。在下一节中，我们将涉及更多的命令，来完成更有用的操作。比如从远端的仓库拉取更新并且合并到你的本地，如何通过分支多人协作，如何处理不同分支的冲突等等。"></a>至此，你应该可以顺利地提交你的项目了。在下一节中，我们将涉及更多的命令，来完成更有用的操作。比如从远端的仓库拉取更新并且合并到你的本地，如何通过分支多人协作，如何处理不同分支的冲突等等。</h5><blockquote>
+<p>这篇文章是<a href="https://github.com/geeeeeeeeek/git-recipes/" target="_blank" rel="noopener"><strong>「git-recipes」</strong></a>的一部分，点击 <a href="https://github.com/geeeeeeeeek/git-recipes/wiki/" target="_blank" rel="noopener"><strong>目录</strong></a> 查看所有章节。</p>
+<p>如果你觉得文章对你有帮助，欢迎点击右上角的 <strong>Star</strong> :star2: 或 <strong>Fork</strong> :fork_and_knife:。</p>
+<p>如果你发现了错误，或是想要加入协作，请参阅 <a href="https://github.com/geeeeeeeeek/git-recipes/issues/1" target="_blank" rel="noopener">Wiki 协作说明</a>。</p>
+</blockquote>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">S.M.</p>
+              <p class="site-description motion-element" itemprop="description">The records of my path.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-简易指南-上"><span class="nav-number">1.</span> <span class="nav-text">Git 简易指南(上)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Git"><span class="nav-number">1.1.</span> <span class="nav-text">安装 Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检出仓库"><span class="nav-number">1.2.</span> <span class="nav-text">检出仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建新仓库"><span class="nav-number">1.3.</span> <span class="nav-text">创建新仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作流"><span class="nav-number">1.4.</span> <span class="nav-text">工作流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加与提交"><span class="nav-number">1.5.</span> <span class="nav-text">添加与提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送改动"><span class="nav-number">1.6.</span> <span class="nav-text">推送改动</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#至此，你应该可以顺利地提交你的项目了。在下一节中，我们将涉及更多的命令，来完成更有用的操作。比如从远端的仓库拉取更新并且合并到你的本地，如何通过分支多人协作，如何处理不同分支的冲突等等。"><span class="nav-number">1.6.0.0.1.</span> <span class="nav-text">至此，你应该可以顺利地提交你的项目了。在下一节中，我们将涉及更多的命令，来完成更有用的操作。比如从远端的仓库拉取更新并且合并到你的本地，如何通过分支多人协作，如何处理不同分支的冲突等等。</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">S.M.</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
