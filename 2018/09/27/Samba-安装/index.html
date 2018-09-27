@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="经济," />
+  <meta name="keywords" content="Samba,Linux tool," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="CPI是居民消费价格指数（consumer price index）的简称。居民消费价格指数，是一个反映居民家庭一般所购买的消费品和服务项目价格水平变动情况的宏观经济指标。它是在特定时段内度量一组代表性消费商品及服务项目的价格水平随时间而变动的相对数，是用来反映居民家庭购买消费商品及服务的价格水平的变动情况。 计算公式CPI=（一组固定商品按当期价格计算的价值除以一组固定商品按基期价格计算的价值）">
-<meta name="keywords" content="经济">
+<meta name="description" content="配置配置文件路径：/etc/samba/smb.conf 简单配置信息： 1234567891011121314151617181920[global]   workgroup = WORKGROUP   server string = Samba Server %v   netbios name = raspberry   security = user;   map to guest = ba">
+<meta name="keywords" content="Samba,Linux tool">
 <meta property="og:type" content="article">
-<meta property="og:title" content="居民消费价格指数">
-<meta property="og:url" content="http://yoursite.com/2018/09/14/居民消费价格指数/index.html">
+<meta property="og:title" content="Samba 安装">
+<meta property="og:url" content="http://yoursite.com/2018/09/27/Samba-安装/index.html">
 <meta property="og:site_name" content="Good Day">
-<meta property="og:description" content="CPI是居民消费价格指数（consumer price index）的简称。居民消费价格指数，是一个反映居民家庭一般所购买的消费品和服务项目价格水平变动情况的宏观经济指标。它是在特定时段内度量一组代表性消费商品及服务项目的价格水平随时间而变动的相对数，是用来反映居民家庭购买消费商品及服务的价格水平的变动情况。 计算公式CPI=（一组固定商品按当期价格计算的价值除以一组固定商品按基期价格计算的价值）">
+<meta property="og:description" content="配置配置文件路径：/etc/samba/smb.conf 简单配置信息： 1234567891011121314151617181920[global]   workgroup = WORKGROUP   server string = Samba Server %v   netbios name = raspberry   security = user;   map to guest = ba">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-14T08:58:10.000Z">
+<meta property="og:updated_time" content="2018-09-27T13:35:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="居民消费价格指数">
-<meta name="twitter:description" content="CPI是居民消费价格指数（consumer price index）的简称。居民消费价格指数，是一个反映居民家庭一般所购买的消费品和服务项目价格水平变动情况的宏观经济指标。它是在特定时段内度量一组代表性消费商品及服务项目的价格水平随时间而变动的相对数，是用来反映居民家庭购买消费商品及服务的价格水平的变动情况。 计算公式CPI=（一组固定商品按当期价格计算的价值除以一组固定商品按基期价格计算的价值）">
+<meta name="twitter:title" content="Samba 安装">
+<meta name="twitter:description" content="配置配置文件路径：/etc/samba/smb.conf 简单配置信息： 1234567891011121314151617181920[global]   workgroup = WORKGROUP   server string = Samba Server %v   netbios name = raspberry   security = user;   map to guest = ba">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/14/居民消费价格指数/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/27/Samba-安装/"/>
 
 
 
 
 
-  <title>居民消费价格指数 | Good Day</title>
+  <title>Samba 安装 | Good Day</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/14/居民消费价格指数/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/27/Samba-安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="S.M.">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">居民消费价格指数</h1>
+          <h1 class="post-title" itemprop="name headline">Samba 安装</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T16:35:30+08:00">
-                2018-09-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-27T20:52:21+08:00">
+                2018-09-27
               </time>
             
 
@@ -300,13 +300,23 @@
       
 
       
-        <p>CPI是居民消费价格指数（consumer price index）的简称。居民消费价格指数，是一个反映居民家庭一般所购买的消费品和服务项目价格水平变动情况的宏观经济指标。它是在特定时段内度量一组代表性消费商品及服务项目的价格水平随时间而变动的相对数，是用来反映居民家庭购买消费商品及服务的价格水平的变动情况。</p>
-<h2 id="计算公式"><a href="#计算公式" class="headerlink" title="计算公式"></a>计算公式</h2><p>CPI=（一组固定商品按当期价格计算的价值除以一组固定商品按基期价格计算的价值）×100%<br>    CPI表示对普通家庭的支出来说，购买具有代表性的一组商品，在今天要比过去某一时间多花费多少，例如，若1995年某国普通家庭每个月购买一组商品的费用为1000元，而2000年购买这一组商品的费用为1100元，那么：<br>以1995年为基期,<br>CPI 1995= (1000/ 1000)<em>100%= 100%, CPI 2000=（1100/ 1000)</em>100%=110%.<br>2000年的通货膨胀率= ((CPI 2000- CPI 1995) / CPI 1995)*100%= 10%</p>
-<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
-</blockquote>
-<blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
-<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[rectangle setX: <span class="number">10</span> y: <span class="number">10</span> width: <span class="number">20</span> height: <span class="number">20</span>];</span><br></pre></td></tr></table></figure>
+        <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>配置文件路径：<code>/etc/samba/smb.conf</code></p>
+<p>简单配置信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">   workgroup = WORKGROUP</span><br><span class="line">   server string = Samba Server %v</span><br><span class="line">   netbios name = raspberry</span><br><span class="line">   security = user</span><br><span class="line">;   map to guest = bad user</span><br><span class="line">   name resolve order = bcast host</span><br><span class="line">   dns proxy = no</span><br><span class="line"></span><br><span class="line">[btdownload]</span><br><span class="line">   comment = SMC</span><br><span class="line">   path = /media/pi/feng/btdownload</span><br><span class="line">;   guest ok = yes</span><br><span class="line">   browseable = yes</span><br><span class="line">   create mask = 0755</span><br><span class="line">   directory mask = 0755</span><br><span class="line">   guest only = no</span><br><span class="line">   read only = no</span><br><span class="line">   force user = pi</span><br><span class="line">   valid users = @pi</span><br></pre></td></tr></table></figure>
+<p>force user 把用户默认到pi<br>valid users 指定pi组的成员</p>
+<p>注意配置文件权限： <code>sudo chown -R pi:pi /media/pi/feng/btdownload</code></p>
+<p>添加Samba用户密码：<code>sudo smbpasswd -a pi</code></p>
+<p>如果失败，需要 <code>sudo apt-get install samba-common-bin</code></p>
+<p>重启： <code>sudo /etc/init.d/samba restart</code></p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul>
+<li>对于使用guest 用户登录的配置，不清楚。在众多教程中没能找出关键信息</li>
+<li>ACL 文件限权认识</li>
+<li>umask</li>
+<li>fstab的修改</li>
+<li>mount, umount, eject 命令</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.samba.org/samba/docs/current/man-html/smb.conf.5.html" target="_blank" rel="noopener">官方配置</a><br><a href="http://www.simonthepiman.com/how_to_setup_windows_file_server.php" target="_blank" rel="noopener">Simon the Pi Man</a><br><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=8657" target="_blank" rel="noopener">Samba Public Shares</a><br><a href="https://elinux.org/R-Pi_NAS#Configure_a_public_storage_area_on_the_RPi" target="_blank" rel="noopener">R-Pi NAS</a><br><a href="https://websiteforstudents.com/create-public-samba-share-ubuntu-17-04-17-10/" target="_blank" rel="noopener">Create a Public Samba Share on Ubuntu 17.04 / 17.10</a></p>
+
       
     </div>
     
@@ -323,7 +333,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/经济/" rel="tag"># 经济</a>
+            <a href="/tags/Samba/" rel="tag"># Samba</a>
+          
+            <a href="/tags/Linux-tool/" rel="tag"># Linux tool</a>
           
         </div>
       
@@ -336,8 +348,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/13/明斯基时刻/" rel="next" title="明斯基时刻">
-                <i class="fa fa-chevron-left"></i> 明斯基时刻
+              <a href="/2018/09/20/Git-简介/" rel="next" title="Git 简介">
+                <i class="fa fa-chevron-left"></i> Git 简介
               </a>
             
           </div>
@@ -345,10 +357,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/14/SLO-MLF-SLF/" rel="prev" title="SLO, MLF, SLF">
-                SLO, MLF, SLF <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -471,7 +479,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算公式"><span class="nav-number">1.</span> <span class="nav-text">计算公式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">1.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">2.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

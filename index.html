@@ -233,6 +233,141 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/27/Samba-安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="S.M.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Day">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/27/Samba-安装/" itemprop="url">Samba 安装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-27T20:52:21+08:00">
+                2018-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>配置文件路径：<code>/etc/samba/smb.conf</code></p>
+<p>简单配置信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">   workgroup = WORKGROUP</span><br><span class="line">   server string = Samba Server %v</span><br><span class="line">   netbios name = raspberry</span><br><span class="line">   security = user</span><br><span class="line">;   map to guest = bad user</span><br><span class="line">   name resolve order = bcast host</span><br><span class="line">   dns proxy = no</span><br><span class="line"></span><br><span class="line">[btdownload]</span><br><span class="line">   comment = SMC</span><br><span class="line">   path = /media/pi/feng/btdownload</span><br><span class="line">;   guest ok = yes</span><br><span class="line">   browseable = yes</span><br><span class="line">   create mask = 0755</span><br><span class="line">   directory mask = 0755</span><br><span class="line">   guest only = no</span><br><span class="line">   read only = no</span><br><span class="line">   force user = pi</span><br><span class="line">   valid users = @pi</span><br></pre></td></tr></table></figure>
+<p>force user 把用户默认到pi<br>valid users 指定pi组的成员</p>
+<p>注意配置文件权限： <code>sudo chown -R pi:pi /media/pi/feng/btdownload</code></p>
+<p>添加Samba用户密码：<code>sudo smbpasswd -a pi</code></p>
+<p>如果失败，需要 <code>sudo apt-get install samba-common-bin</code></p>
+<p>重启： <code>sudo /etc/init.d/samba restart</code></p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul>
+<li>对于使用guest 用户登录的配置，不清楚。在众多教程中没能找出关键信息</li>
+<li>ACL 文件限权认识</li>
+<li>umask</li>
+<li>fstab的修改</li>
+<li>mount, umount, eject 命令</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.samba.org/samba/docs/current/man-html/smb.conf.5.html" target="_blank" rel="noopener">官方配置</a><br><a href="http://www.simonthepiman.com/how_to_setup_windows_file_server.php" target="_blank" rel="noopener">Simon the Pi Man</a><br><a href="https://www.raspberrypi.org/forums/viewtopic.php?t=8657" target="_blank" rel="noopener">Samba Public Shares</a><br><a href="https://elinux.org/R-Pi_NAS#Configure_a_public_storage_area_on_the_RPi" target="_blank" rel="noopener">R-Pi NAS</a><br><a href="https://websiteforstudents.com/create-public-samba-share-ubuntu-17-04-17-10/" target="_blank" rel="noopener">Create a Public Samba Share on Ubuntu 17.04 / 17.10</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/20/Git-简介/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1062,7 +1197,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1075,7 +1210,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
