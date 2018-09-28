@@ -233,6 +233,133 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/DNSpod-DDNS解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="S.M.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Day">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/28/DNSpod-DDNS解析/" itemprop="url">DNSpod DDNS解析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T16:29:27+08:00">
+                2018-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>虽然许多路由器都有提供免费的域名解析，但是TTL的时间过长，大部分超过半个小时以上。DNSpod 可以通过API进行域名的解析，我们正好可以通过python进行ip记录的修改。</p>
+<p>启动项service 脚本： <a href="https://gist.githubusercontent.com/billryan/239778f0821937939c8c140bdddd6840/raw/c76b52af0e8e8e50b5ee1b6a012e43e9f9dc39b4/dnspod-ddns.service" target="_blank" rel="noopener">https://gist.githubusercontent.com/billryan/239778f0821937939c8c140bdddd6840/raw/c76b52af0e8e8e50b5ee1b6a012e43e9f9dc39b4/dnspod-ddns.service</a></p>
+<p>ip获取上传： <a href="https://gist.githubusercontent.com/billryan/239778f0821937939c8c140bdddd6840/raw/c76b52af0e8e8e50b5ee1b6a012e43e9f9dc39b4/dnspod_ddns.py" target="_blank" rel="noopener">https://gist.githubusercontent.com/billryan/239778f0821937939c8c140bdddd6840/raw/c76b52af0e8e8e50b5ee1b6a012e43e9f9dc39b4/dnspod_ddns.py</a></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>替换上你的ID, Token, domain, sub_domain 就可以运行了。(ID,Token) 可以从 API 鉴权方式升级为 Token 获得。 脚本会在后台一直运行，初始化时会根据 sub_domain 查询是否已经创建，每隔30秒检查一遍IP，如果修改了就更新IP。</p>
+<p>以 Archlinux 为例，按照如下步骤操作即可设置开机启动这个 DDNS 服务。</p>
+<p>Archlinux 以下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo wget -O /usr/local/bin/dnspod_ddns.py https://gist.githubusercontent.com/billryan/239778f0821937939c8c140bdddd6840/raw/c76b52af0e8e8e50b5ee1b6a012e43e9f9dc39b4/dnspod_ddns.py</span><br><span class="line">sudo chmod +x /usr/local/bin/dnspod_ddns.py</span><br><span class="line">sudo wget -O /etc/systemd/system/dnspod-ddns.service https://gist.githubusercontent.com/billryan/239778f0821937939c8c140bdddd6840/raw/c76b52af0e8e8e50b5ee1b6a012e43e9f9dc39b4/dnspod-ddns.service</span><br><span class="line">sudo systemctl start dnspod-ddns</span><br><span class="line">sudo systemctl enable dnspod-ddns</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://gist.github.com/billryan/239778f0821937939c8c140bdddd6840" target="_blank" rel="noopener">DNSPod DDNS Python Script</a><br><a href="https://blog.yuanbin.me/posts/2016-07/2016-07-08_22-25-28/" target="_blank" rel="noopener">家用服务器之 DDNS</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/hexo-安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1418,132 +1545,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/Analyzing-Mutual-Fund-Performance/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="S.M.">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Day">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/13/Analyzing-Mutual-Fund-Performance/" itemprop="url">Analyzing Mutual Fund Performance</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T16:33:04+08:00">
-                2018-09-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##Analyzing Mutual Fund Performance</p>
-<p>There are a number of attractive mutual funds and fund managers that have performed very well over both long-term and short-term horizons. Sometimes, performance can be attributable to a mutual fund manager’s superior stock-picking abilities and/or asset allocation decisions. In this article, we’ll summarize how to analyze a mutual fund’s portfolio and determine whether there are specific performance drivers. (To learn more, see Choose a Fund With a Winning Manager.)<br><strong>TUTORIAL: Mutual Fund Basics</strong></p>
-<p><strong>Portfolio Analysis</strong><br>All mutual funds have a stated investment mandate that specifies whether the fund will invest in large companies or small companies, and whether those companies exhibit growth or value characteristics. It is assumed that the mutual fund manager will adhere to the stated investment objective. It’s a good start to understand the fund’s specific investment mandate, but there is more to fund performance that can only be revealed by digging a bit deeper into the fund’s portfolio over time.</p>
-<p><strong>Sector Weights</strong><br>Sometimes fund managers will gravitate toward certain sectors either because they have deeper experience within those sectors, or the characteristics they look for in companies force them into certain industries. A reliance on a particular sector may leave a manager with limited possibilities if they have not broadened their investment net.<br>To determine a fund’s sector weight, we must either use analytical software or sources like Yahoo or MSN. Regardless of how the information is obtained, the investor must compare the fund to its relevant indexes to determine where the fund manager increased or decreased their allocation to specific sectors relative to the index. This analysis will shed light on the manager’s over/underexposure to specific indexes (relative to the index) in order to gain additional insight on the fund manager’s tendencies or performance drivers.<br>The analysis can be as simple as listing the fund and relevant indexes side by side with a breakdown by sector. For example, for a large-cap manager, the simplest way to determine sector reliance is to place the fund’s sector breakdown next to both the S&amp;P 500/Citigroup Growth Index and the S&amp;P 500/Citigroup Value Index. Both of these indexes exhibit unique sector breakdowns because certain sectors routinely fall into the value category, while others fall into the growth category. Technology, known more as a growth sector, will have a higher weight in the S&amp;P/Citigroup Growth Index than in the S&amp;P 500/Citigroup Value Index. Industrials, on the other hand, known as a value sector, will have a higher weight in the S&amp;P 500/Citigroup Value Index than in the S&amp;P 500/Citigroup Growth Index. A comparison of the fund relative to the sector breakdown of these two indexes will indicate whether the fund is in line with its stated mandate and reveal any over or under allocations to a specific sector. (For more insight, read Benchmark Your Returns With Indexes.)<br>The key to this analysis is to perform it on current as well as historical data in order to identify any tendencies the fund manager may have. (To learn more, read Shifting Focus to Sector Allocation.)</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1587,7 +1595,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1600,7 +1608,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
