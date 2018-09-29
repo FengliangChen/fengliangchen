@@ -233,6 +233,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/29/Aria2-安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="S.M.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Day">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/29/Aria2-安装/" itemprop="url">Aria2 安装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-29T14:57:49+08:00">
+                2018-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Aria2 是一款综合型的下载神器， 所以BT, FTP ， http 等主流下载方式都是很好的支持。</p>
+<p>以下主要的几点优点：</p>
+<ul>
+<li>BT 下载的各种参数的可调整。</li>
+<li>HTTP, FTP下载文件的多进程下载和断点支持。</li>
+<li>能通过WEB的方式进行远端监控</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="安装程程序"><a href="#安装程程序" class="headerlink" title="安装程程序"></a>安装程程序</h3><p>执行命令 <code>sudo apt install aria2c</code></p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>新建一个文件 aria2.conf, 然后按照以下模版填入配置。</p>
+<p><a href="http://aria2c.com/usage.html" target="_blank" rel="noopener">Aria2 &amp; YAAW 使用说明</a></p>
+<p>注意事项：</p>
+<ul>
+<li>dir=~/downloads MacOS 不支持相对路径，所以不管什么时候，都推荐搷入全部路径。</li>
+<li>input-file=/etc/aria2/aria2.session 这个的aria2.session 可以在相应的文件夹touch 一个空的文件，不然第一次运行提示找不到文件。或可以先用#解释掉，下载后再去掉。</li>
+<li>RPC相关设置 远程请设置SSL 注意授权令牌等。</li>
+<li>BT/PT下载相关 保持默认就可以了。PT 的意思为 Private tracker, 私人BT下载站，这些论坛一般人想进去也不容易。</li>
+</ul>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p><code>aria2c --conf-path=配置文件路径/aria2.conf</code></p>
+<p>命令行下载肯定很不方便，我们需要下载一个web端的控制面板。</p>
+<p><a href="https://github.com/mayswind/AriaNg/releases" target="_blank" rel="noopener">AriaNg</a></p>
+<p>解压后直接点击index.html 动行即可。如果配置有密码或其它端口，那么需要在相应的页面设置。</p>
+<h2 id="其它工具"><a href="#其它工具" class="headerlink" title="其它工具"></a>其它工具</h2><ul>
+<li>Firefox 的<code>Aria2 Download Manager Integration</code> 可以随时实现多个web端的下载。</li>
+<li>BT 下载，速度时常不正常，请偿试更换种子服务器。 <a href="https://github.com/ngosang/trackerslist" target="_blank" rel="noopener">ngosang/trackerslist</a></li>
+<li>福利。<a href="http://www.btbtt.us" target="_blank" rel="noopener">www.btbtt.us</a> 美剧， 日剧， 韩剧， 国产 比较全的整合，几天之内的种子热度都是非常高的。花花绿绿的广告好多，在ubuntu的firefox浏览器开ABP插件基本是屏蔽所有广告的。</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://aria2.github.io/manual/en/html/aria2c.html" target="_blank" rel="noopener">官方配置说明</a><br><a href="http://aria2c.com/usage.html" target="_blank" rel="noopener">Aria2 &amp; YAAW 使用说明</a><br><a href="https://zhuanlan.zhihu.com/p/30666881" target="_blank" rel="noopener">Aria2基础上手指南</a><br><a href="https://www.moerats.com/archives/509/" target="_blank" rel="noopener">利用Aria2+AriaNg+H5ai+Google Drive建立离线BT下载/在线播放/无限空间网盘</a><br><a href="https://www.jianshu.com/p/e1e14670bdf4" target="_blank" rel="noopener">Caddy + FileManager + WebDav + Aria2 + Rclone = 大容量离线下载服务器</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/SSH-公钥授权登录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1435,126 +1581,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/明斯基时刻/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="S.M.">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Day">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/13/明斯基时刻/" itemprop="url">明斯基时刻</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T17:05:53+08:00">
-                2018-09-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>“明斯基时刻”（Minsky Moment）是指海曼·明斯基Hyman Minsky(美国经济学家)所描述的时刻，即资产价值崩溃时刻。他的观点主要是经济长时期稳定可能导致债务增加、杠杆比率上升，进而从内部滋生爆发金融危机和陷入漫长去杠杆化周期的风险。经济好的时候，投资者倾向于承担更多风险，随着经济向好的时间不断推移，投资者承受的风险水平越大，直到超过收支不平衡点而崩溃。这种投机资产促使放贷人尽快回收借出去的款项。“就像引导到资产价值崩溃时刻”。<br>明斯基时刻表示的是市场繁荣与衰退之间的转折点。明斯基的观点简单明了：好日子的时候，投资者敢于冒险；好日子的时间越长，投资者冒险越多，直到过度冒险。一步一步地，投资者会到达一个临界点上，其资产所产生的现金不再足以偿付他们用来获得资产所举的债务。投机性资产的损失促使放贷者收回其贷款。“从而导致资产价值的崩溃。”</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1605,7 +1631,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1618,7 +1644,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
