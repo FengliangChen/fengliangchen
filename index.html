@@ -233,6 +233,144 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/Caddy-安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="S.M.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Day">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/03/Caddy-安装/" itemprop="url">Caddy 安装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T00:39:12+08:00">
+                2018-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Caddy 是用GO写的网站服务软件，有很多时候，私人建站只需要一些简单的web服务，比较流行的方案LNMP或者LAMP相比之下就显得非常臃肿和过剩了。</p>
+<p>非常之常用的一些功能：</p>
+<ul>
+<li>可以自动生成let’s encrypt的证书，并且能够自动更新证书。</li>
+<li>File manager 插件，可以提供网盘功能，上存，下载，分享，视频在线播放，文件在线编辑，用户新增，权限等。</li>
+<li>Webdav 插件，可以远程把文件夹映射。</li>
+<li>Websocket 插件，和v2ray配合，翻墙再也不用怕ip被gfwed.</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>访问 <a href="https://caddyserver.com/download" target="_blank" rel="noopener">https://caddyserver.com/download</a>, 选好平台，插件，等，在网页底下会出现安装方式的选择。</p>
+<p>以下为树莓派ARMv7    安装 File manager 和 Webdav。</p>
+<p>下载:<br><code>https://caddyserver.com/download/linux/arm7?plugins=http.authz,http.filemanager,http.webdav&amp;license=personal&amp;telemetry=off</code></p>
+<p>命令行安装:<br><code>curl https://getcaddy.com | bash -s personal http.authz,http.filemanager,http.webdav</code></p>
+<p>选择命令行安装，复制，粘贴运行即可。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>只要当前的文件夹下存在Caddyfile，那么运行命令之时，这个就是默认的配置文件。</p>
+<p>配置模版:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">https://simonchen.space/xxx &#123;</span><br><span class="line"> log /xxx/file_access.log</span><br><span class="line"> tls /xxx/x.crt /xxx/x.key</span><br><span class="line"> timeouts none</span><br><span class="line"> gzip</span><br><span class="line"> filemanager / /xxx/xx/xxx &#123;</span><br><span class="line">  database /xxx/xxx/xxx/filemanager.db</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">https://simonchen.space/xxxxx &#123;</span><br><span class="line">  timeouts none</span><br><span class="line">  log /xxxx/filedav.log</span><br><span class="line">  tls /xxx/x.crt /xxx/x.key</span><br><span class="line">  gzip</span><br><span class="line">  basicauth / username password</span><br><span class="line">  webdav &#123;</span><br><span class="line">  scope /share_folder/</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">simonchen.space:80 &#123;</span><br><span class="line"> redir https://simonchen.space&#123;uri&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改后文件命名为 Caddyfile， 在当前文件夹执行caddy, 服务即启动。这时服务只存在当前，</p>
+<p>我们可以用 nohup caddy &amp; 放在后台，停用需要 ps -aux | grep caddy 找出进程，kill -9 把进程停掉。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://caddyserver.com/docs" target="_blank" rel="noopener">官方配置</a><br><a href="https://www.zybuluo.com/zwh8800/note/844776" target="_blank" rel="noopener">Caddy - 方便够用的 HTTPS server 新手教程</a><br><a href="https://zhuanlan.zhihu.com/p/25850060" target="_blank" rel="noopener">清新脱俗的 Web 服务器 Caddy</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/29/Aria2-安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -311,7 +449,7 @@
 <li>HTTP, FTP下载文件的多进程下载和断点支持。</li>
 <li>能通过WEB的方式进行远端监控</li>
 </ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="安装程程序"><a href="#安装程程序" class="headerlink" title="安装程程序"></a>安装程程序</h3><p>执行命令 <code>sudo apt install aria2c</code></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="安装程序"><a href="#安装程序" class="headerlink" title="安装程序"></a>安装程序</h3><p>执行命令 <code>sudo apt install aria2c</code></p>
 <h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>新建一个文件 aria2.conf, 然后按照以下模版填入配置。</p>
 <p><a href="http://aria2c.com/usage.html" target="_blank" rel="noopener">Aria2 &amp; YAAW 使用说明</a></p>
 <p>注意事项：</p>
@@ -727,6 +865,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:FengliangChen/fengliangchen.github.com.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 <p>将Repository换成你申请的Git仓库地址</p>
 <p>github的repository用https将每次要输入用户及密码，上传公钥后可用ssh push。</p>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p><a href="https://segmentfault.com/q/1010000014852153" target="_blank" rel="noopener">hexo如何修改分类（categories）、标签（tags）的路由（固定链接）</a><br><a href="https://segmentfault.com/q/1010000002561642" target="_blank" rel="noopener">hexo分类与tags配置</a></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.jianshu.com/p/84a8384be1ae" target="_blank" rel="noopener">Hexo使用指南</a><br><a href="https://stackoverflow.com/questions/18797940/still-requiring-login-after-ssh-authentication" target="_blank" rel="noopener">https</a></p>
 
           
@@ -1456,131 +1595,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/14/居民消费价格指数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="S.M.">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Day">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/14/居民消费价格指数/" itemprop="url">居民消费价格指数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T16:35:30+08:00">
-                2018-09-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>CPI是居民消费价格指数（consumer price index）的简称。居民消费价格指数，是一个反映居民家庭一般所购买的消费品和服务项目价格水平变动情况的宏观经济指标。它是在特定时段内度量一组代表性消费商品及服务项目的价格水平随时间而变动的相对数，是用来反映居民家庭购买消费商品及服务的价格水平的变动情况。</p>
-<h2 id="计算公式"><a href="#计算公式" class="headerlink" title="计算公式"></a>计算公式</h2><p>CPI=（一组固定商品按当期价格计算的价值除以一组固定商品按基期价格计算的价值）×100%<br>    CPI表示对普通家庭的支出来说，购买具有代表性的一组商品，在今天要比过去某一时间多花费多少，例如，若1995年某国普通家庭每个月购买一组商品的费用为1000元，而2000年购买这一组商品的费用为1100元，那么：<br>以1995年为基期,<br>CPI 1995= (1000/ 1000)<em>100%= 100%, CPI 2000=（1100/ 1000)</em>100%=110%.<br>2000年的通货膨胀率= ((CPI 2000- CPI 1995) / CPI 1995)*100%= 10%</p>
-<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
-</blockquote>
-<blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
-<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[rectangle setX: <span class="number">10</span> y: <span class="number">10</span> width: <span class="number">20</span> height: <span class="number">20</span>];</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1631,7 +1645,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1644,7 +1658,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
