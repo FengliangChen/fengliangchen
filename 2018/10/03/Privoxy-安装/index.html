@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hexo,linux tools," />
+  <meta name="keywords" content="MacOS,privoxy,proxy," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Hexo 是一个非常之方便的网页生成工具。安装之前需要node.js的支持。 更换国内换源npm config set registry https://registry.npm.taobao.org npm info underscore hexo安装npm install -g hexo-cli 创建hexo工程hexo init your_blog_name 新建文章hexo new “yo">
-<meta name="keywords" content="hexo,linux tools">
+<meta name="description" content="简介在Mac环境下，我们终端的brew 安装，或者git 等，GFW的影响日益严重，安装，上传，连接等时常失败或者是超时，这时需要把流量走代理减少这些影响。 Provixy在这里的作用是把本地的Shadowsocks的socks5转为http代理， 把监听放到0.0.0.0让局域内的设备都可以连接。 安装brew install privoxy 配置打开配置文件：vim /usr/local/et">
+<meta name="keywords" content="MacOS,privoxy,proxy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo 安装">
-<meta property="og:url" content="http://yoursite.com/2018/09/28/hexo-安装/index.html">
+<meta property="og:title" content="Privoxy 安装">
+<meta property="og:url" content="http://yoursite.com/2018/10/03/Privoxy-安装/index.html">
 <meta property="og:site_name" content="Good Day">
-<meta property="og:description" content="Hexo 是一个非常之方便的网页生成工具。安装之前需要node.js的支持。 更换国内换源npm config set registry https://registry.npm.taobao.org npm info underscore hexo安装npm install -g hexo-cli 创建hexo工程hexo init your_blog_name 新建文章hexo new “yo">
+<meta property="og:description" content="简介在Mac环境下，我们终端的brew 安装，或者git 等，GFW的影响日益严重，安装，上传，连接等时常失败或者是超时，这时需要把流量走代理减少这些影响。 Provixy在这里的作用是把本地的Shadowsocks的socks5转为http代理， 把监听放到0.0.0.0让局域内的设备都可以连接。 安装brew install privoxy 配置打开配置文件：vim /usr/local/et">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-29T08:42:00.435Z">
+<meta property="og:updated_time" content="2018-10-03T09:29:19.584Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo 安装">
-<meta name="twitter:description" content="Hexo 是一个非常之方便的网页生成工具。安装之前需要node.js的支持。 更换国内换源npm config set registry https://registry.npm.taobao.org npm info underscore hexo安装npm install -g hexo-cli 创建hexo工程hexo init your_blog_name 新建文章hexo new “yo">
+<meta name="twitter:title" content="Privoxy 安装">
+<meta name="twitter:description" content="简介在Mac环境下，我们终端的brew 安装，或者git 等，GFW的影响日益严重，安装，上传，连接等时常失败或者是超时，这时需要把流量走代理减少这些影响。 Provixy在这里的作用是把本地的Shadowsocks的socks5转为http代理， 把监听放到0.0.0.0让局域内的设备都可以连接。 安装brew install privoxy 配置打开配置文件：vim /usr/local/et">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/28/hexo-安装/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/03/Privoxy-安装/"/>
 
 
 
 
 
-  <title>hexo 安装 | Good Day</title>
+  <title>Privoxy 安装 | Good Day</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/hexo-安装/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/Privoxy-安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="S.M.">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hexo 安装</h1>
+          <h1 class="post-title" itemprop="name headline">Privoxy 安装</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T03:20:57+08:00">
-                2018-09-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T16:47:12+08:00">
+                2018-10-03
               </time>
             
 
@@ -300,22 +300,31 @@
       
 
       
-        <p>Hexo 是一个非常之方便的网页生成工具。安装之前需要node.js的支持。</p>
-<h3 id="更换国内换源"><a href="#更换国内换源" class="headerlink" title="更换国内换源"></a>更换国内换源</h3><p><code>npm config set registry https://registry.npm.taobao.org npm info underscore</code></p>
-<h3 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h3><p><code>npm install -g hexo-cli</code></p>
-<h3 id="创建hexo工程"><a href="#创建hexo工程" class="headerlink" title="创建hexo工程"></a>创建hexo工程</h3><p><code>hexo init your_blog_name</code></p>
-<h3 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h3><p><code>hexo new “your_post_title”</code></p>
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><p><code>hexo generate</code></p>
-<p>使用Hexo引擎将Markdown格式的文件解析成可以使用浏览器查看的HTML文件，HTML文件存储在blog/public目录下。</p>
-<h3 id="运行hexo服务器"><a href="#运行hexo服务器" class="headerlink" title="运行hexo服务器"></a>运行hexo服务器</h3><p><code>hexo server</code></p>
-<h3 id="将Hexo上传到Github上"><a href="#将Hexo上传到Github上" class="headerlink" title="将Hexo上传到Github上"></a>将Hexo上传到Github上</h3><p>安装deployer-git</p>
-<p><code>npm install hexo-deployer-git --save</code></p>
-<p>在/blog/_config.yml中修改deploy属性(注意:之后有空格)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:FengliangChen/fengliangchen.github.com.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<p>将Repository换成你申请的Git仓库地址</p>
-<p>github的repository用https将每次要输入用户及密码，上传公钥后可用ssh push。</p>
-<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p><a href="https://segmentfault.com/q/1010000014852153" target="_blank" rel="noopener">hexo如何修改分类（categories）、标签（tags）的路由（固定链接）</a><br><a href="https://segmentfault.com/q/1010000002561642" target="_blank" rel="noopener">hexo分类与tags配置</a></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.jianshu.com/p/84a8384be1ae" target="_blank" rel="noopener">Hexo使用指南</a><br><a href="https://stackoverflow.com/questions/18797940/still-requiring-login-after-ssh-authentication" target="_blank" rel="noopener">https</a></p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在Mac环境下，我们终端的brew 安装，或者git 等，GFW的影响日益严重，安装，上传，连接等时常失败或者是超时，这时需要把流量走代理减少这些影响。</p>
+<p>Provixy在这里的作用是把本地的Shadowsocks的socks5转为http代理， 把监听放到0.0.0.0让局域内的设备都可以连接。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>brew install privoxy</code></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>打开配置文件：<br><code>vim /usr/local/etc/privoxy/config</code></p>
+<p>修改以下配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">forward-socks5t   /               127.0.0.1:1080 .</span><br><span class="line">listen-address  0.0.0.0:8118</span><br></pre></td></tr></table></figure></p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p><code>/usr/local/sbin/privoxy /usr/local/etc/privoxy/config</code></p>
+<p>检查是否成功：<br><code>ps aux|grep privoxy</code>或者<code>lsof -i:8118</code></p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ul>
+<li><p>http 代理： <code>http://127.0.0.1:8118</code></p>
+</li>
+<li><p>git 设置 http 或 https 代理:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:8118</span><br><span class="line">git config --global https.proxy http://127.0.0.1:8118</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取消代理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git 下载走代理<br><code>git -c https.proxy=http://127.0.0.1:8118 clone --depth=1 https://github.com/xxx/xxx</code></p>
+</li>
+</ul>
+<p>也可以在<code>.gitconfig</code>中修改配置。</p>
+<ul>
+<li>终端中临时需要走代理：<br><code>export http_proxy=http://127.0.0.1:8118</code></li>
+</ul>
+<p>查看是否走代理理了：<br><code>curl -i http://ip.cn</code></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://javasgl.github.io/transfer_socks5_to_http_proxy/" target="_blank" rel="noopener">Mac上使用Privoxy 将 socks5转换为 http 代理</a><br><a href="https://blog.fazero.me/2015/09/15/%E8%AE%A9%E7%BB%88%E7%AB%AF%E8%B5%B0%E4%BB%A3%E7%90%86%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">让终端走代理的几种方法</a></p>
 
       
     </div>
@@ -333,9 +342,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/MacOS/" rel="tag"># MacOS</a>
           
-            <a href="/tags/linux-tools/" rel="tag"># linux tools</a>
+            <a href="/tags/privoxy/" rel="tag"># privoxy</a>
+          
+            <a href="/tags/proxy/" rel="tag"># proxy</a>
           
         </div>
       
@@ -348,8 +359,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/28/node-js-安装/" rel="next" title="node.js 安装">
-                <i class="fa fa-chevron-left"></i> node.js 安装
+              <a href="/2018/10/03/Caddy-安装/" rel="next" title="Caddy 安装">
+                <i class="fa fa-chevron-left"></i> Caddy 安装
               </a>
             
           </div>
@@ -357,10 +368,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/28/DNSpod-DDNS解析/" rel="prev" title="DNSpod DDNS解析">
-                DNSpod DDNS解析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -483,7 +490,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#更换国内换源"><span class="nav-number">1.</span> <span class="nav-text">更换国内换源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo安装"><span class="nav-number">2.</span> <span class="nav-text">hexo安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建hexo工程"><span class="nav-number">3.</span> <span class="nav-text">创建hexo工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建文章"><span class="nav-number">4.</span> <span class="nav-text">新建文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成静态文件"><span class="nav-number">5.</span> <span class="nav-text">生成静态文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行hexo服务器"><span class="nav-number">6.</span> <span class="nav-text">运行hexo服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将Hexo上传到Github上"><span class="nav-number">7.</span> <span class="nav-text">将Hexo上传到Github上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它"><span class="nav-number">8.</span> <span class="nav-text">其它</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text">参考</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">4.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">5.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
